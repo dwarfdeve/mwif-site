@@ -22,7 +22,7 @@ export default function Store() {
       </header>
 
       <section className="store-hero page-frame">
-        <div className="eyebrow"><span>STORE_EXECUTABLE</span><span>v.2025.04</span></div>
+        <div className="eyebrow"><span>STORE_EXECUTABLE</span><span>v.2026.01</span></div>
         <div className="store-title-row"><div><p className="hero-kicker">// STATIC MEDIA ARCHIVE FOR THE F-FORTIFIED</p><h1>CLASSIC <em>DROP</em></h1><p className="store-lede">The full downloadable payload: memes for the timeline, stickers for the group chat, and GIFs for every questionable decision.</p></div><div className="store-terminal-badge"><span>STATUS</span><strong>ONLINE</strong><small>{classicStoreAssets.length} FILES // STATIC ONLY</small></div></div>
       </section>
 

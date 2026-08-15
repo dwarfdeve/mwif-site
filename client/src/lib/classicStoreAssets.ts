@@ -1,4 +1,4 @@
-const storagePath = (filename: string) => `${import.meta.env.BASE_URL.replace(/\/$/, "")}/manus-storage/${filename}`;
+const storagePath = (filename: string) => `${import.meta.env.BASE_URL.replace(/\/$/, "")}/mwif-assets/${filename}`;
 
 export type StoreAsset = { category: 'MEME' | 'STICKER' | 'GIF'; label: string; url: string; filename: string; };
 

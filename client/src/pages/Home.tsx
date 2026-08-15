@@ -2,7 +2,7 @@
 /* Phosphor Terminal style: neo-brutalist terminal UI, black void, phosphor green signal, purple interrupt moments, visible scanlines, deliberate command-line rhythm. */
 import { useEffect, useMemo, useRef, useState } from "react";
 
-const storagePath = (filename: string) => `${import.meta.env.BASE_URL.replace(/\/$/, "")}/manus-storage/${filename}`;
+const storagePath = (filename: string) => `${import.meta.env.BASE_URL.replace(/\/$/, "")}/mwif-assets/${filename}`;
 const LOGO_URL = storagePath("logo_2005e11e.png");
 const F_MARK_URL = storagePath("mwif-f-mark_f820e130.png");
 const TERMINAL_TEXTURE = storagePath("mwif-terminal-grid_e1e029b5.png");
@@ -23,10 +23,10 @@ const mediaAssets = [
 
 const terminalText = [
   "man_with_f.exe started...",
-  "2021: Had 100k",
-  "2022: Had 100",
-  "2024: Pressed F",
-  "2025: Building $MWIF",
+  "2026: Project booted",
+  "2026: Community assembled",
+  "2026: Pressed F",
+  "2026: Building $MWIF",
   "Press F to join_",
 ].join("\n");
 
@@ -105,7 +105,8 @@ export default function Home() {
   const badge = pressed >= 1000 ? "1000 F Club" : pressed >= 500 ? "500 F Club" : pressed >= 100 ? "100 F Club" : null;
 
   function shareMyScore() {
-    const shareText = `I pressed F ${pressed} times for $MWIF 🫡 https://mwifcoin-x9pwj42b.manus.space`;
+    const siteUrl = `${window.location.origin}${window.location.pathname}`;
+    const shareText = `I pressed F ${pressed} times for $MWIF 🫡 ${siteUrl}`;
     window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`, "_blank", "noopener,noreferrer");
   }
 
@@ -309,7 +310,7 @@ export default function Home() {
       </header>
 
       <section id="top" className="hero page-frame scroll-reveal" data-reveal>
-        <div className="eyebrow"><span>BOOT_SEQUENCE</span><span>v.2025.04</span></div>
+        <div className="eyebrow"><span>BOOT_SEQUENCE</span><span>v.2026.01</span></div>
         <div className="hero-grid">
           <div className="hero-copy"><p className="hero-kicker">// A MEME COIN FOR THE F-FORTIFIED</p><h1>MAN WITH <em>F</em></h1><p className="hero-subcopy">No roadmap. No promises. Just conviction, questionable decisions, and a community that knows when to press F.</p></div>
           <div className="hero-mark-wrap"><div className="logo-frame"><span className="corner corner-tl" /><span className="corner corner-br" /><img className="mwif-logo" src={LOGO_URL} alt="MWIF graffiti logo with two cartoon faces" /></div><div className="logo-caption"><span>asset://logo.png</span><span>768 × 768</span></div></div>
@@ -332,7 +333,7 @@ export default function Home() {
 
       <section className="home-store-teaser page-frame scroll-reveal" data-reveal><div className="section-heading"><span className="section-index">[03]</span><h2><strong>STORE</strong> // CLASSIC_DROP</h2><span className="section-rule" /></div><div className="home-store-teaser-grid"><div><p className="section-intro">The full static payload is mounted in a dedicated archive: 105 memes, 20 stickers, and 20 GIFs for the timeline, group chat, and next questionable decision.</p><a className="terminal-button filled" href="#/store" data-button>OPEN FULL STORE <span>↗</span></a></div><div className="home-store-stats"><span><strong>105</strong> MEMES</span><span><strong>20</strong> STICKERS</span><span><strong>20</strong> GIFS</span><small>STATIC_ONLY // DOWNLOADABLE // FFF GANG</small></div></div></section>
 
-      <footer className="footer page-frame"><div className="footer-top"><div className="contract-label">Contract: <strong>TBA</strong> <span>|</span> Launching Soon</div><div className="footer-links"><a href="https://x.com/iam_mwif?s=11" target="_blank" rel="noreferrer">[ X ]</a><a href="https://t.me/mwifportal" target="_blank" rel="noreferrer">[ Telegram ]</a><a href="#">[ GitHub ]</a><a href="#">[ Jupiter ]</a></div></div><div className="footer-gang">Join the FFF Gang</div><div className="footer-bottom"><span>$MWIF is a meme coin. Not financial advice. FFF gang only.</span><span>© 2025 MWIF / END_OF_FILE</span></div></footer>
+      <footer className="footer page-frame"><div className="footer-top"><div className="contract-label">Contract: <strong>TBA</strong> <span>|</span> Launching Soon</div><div className="footer-links"><a href="https://x.com/iam_mwif?s=11" target="_blank" rel="noreferrer">[ X ]</a><a href="https://t.me/mwifportal" target="_blank" rel="noreferrer">[ Telegram ]</a><a href="#">[ Jupiter ]</a></div></div><div className="footer-gang">Join the FFF Gang</div><div className="footer-bottom"><span>$MWIF is a meme coin. Not financial advice. FFF gang only.</span><span>© 2026 MWIF / END_OF_FILE</span></div></footer>
       <div className="marquee" aria-label="FFF"><div className="marquee-track">FFF FFF FFF FFF&nbsp;&nbsp;&nbsp;FFF FFF FFF FFF&nbsp;&nbsp;&nbsp;</div></div>
     </main>
   );
