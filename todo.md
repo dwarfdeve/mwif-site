@@ -189,7 +189,7 @@
 
 ## Dedicated STORE page
 
-- [ ] Inspect routing, catalog data, and the current landing-page STORE section.
-- [ ] Create a separate STORE page using the full 105 meme, 20 sticker, and 20 GIF catalog.
-- [ ] Preserve the existing landing-page interface and verify back-navigation, filters, downloads, and responsive layout.
-- [ ] Rebuild, push to GitHub, and save a checkpoint.
+- [x] Inspect routing, catalog data, and the current landing-page STORE section.
+- [x] Create a separate STORE page using the full 105 meme, 20 sticker, and 20 GIF catalog.
+- [x] Preserve the existing landing-page interface and verify back-navigation, filters, downloads, and responsive layout.
+- [x] Rebuild, push to GitHub, and save a checkpoint.
