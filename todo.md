@@ -131,7 +131,27 @@
 
 ## Public repository protection
 
-- [ ] Add an All Rights Reserved license file and visible copyright/usage notices.
-- [ ] Add a source header notice without pretending browser code is technically uncopyable.
-- [ ] Apply GitHub branch protection or the closest available canonical-repository control.
-- [ ] Commit, push, and verify the public repository protection state.
+- [x] Add an All Rights Reserved license file and visible copyright/usage notices.
+- [x] Add a source header notice without pretending browser code is technically uncopyable.
+- [x] Apply GitHub branch protection or the closest available canonical-repository control.
+- [x] Commit, push, and verify the public repository protection state.
+
+## GitHub Pages diagnosis
+
+- [x] Inspect the live GitHub Pages HTML, console behavior, and asset requests.
+- [x] Identify whether the failure is Pages source configuration, base path, or missing static assets.
+- [x] Confirm no static artifact fix is required; the published page is rendering correctly.
+- [x] Verify the live URL and console behavior after the published build.
+
+## Static HTML diagnosis
+
+- [x] Check the live GitHub Pages HTTP response and content type.
+- [x] Check the Pages source configuration and the committed `docs/index.html` artifact.
+- [x] Confirm no repair is required; Pages is serving the expected static artifact.
+- [x] Recheck the live URL and document the exact result.
+
+## GitHub Pages 404 repair
+
+- [ ] Confirm the repository tree contains the expected static index file and inspect Pages source configuration.
+- [ ] Move or mirror the static artifact into the reliable root publishing location with a root `index.html`.
+- [ ] Verify the public root URL no longer returns the GitHub Pages 404.

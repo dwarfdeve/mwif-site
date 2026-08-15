@@ -22,7 +22,7 @@ pnpm build
 
 ## GitHub Pages
 
-The workflow in `.github/workflows/pages.yml` validates the frontend and deploys the committed, self-contained `docs` artifact through GitHub Pages on every push to `main`. The artifact includes the relative-path JavaScript/CSS bundle and the static media under `docs/manus-storage`, so it does not depend on Manus runtime storage. In the repository settings, set **Pages → Source** to **GitHub Actions**. The public project site will then be available at `https://dwarfdeve.github.io/mwif-site/` after the first successful workflow run.
+GitHub Pages serves the committed, self-contained static artifact from the repository root on `main`. The root includes `index.html`, `assets/`, and `manus-storage/` with relative paths, so it does not depend on Manus runtime storage. In the repository settings, set **Pages → Source** to **Deploy from a branch**, choose `main`, and choose the `/ (root)` folder. The public project site is `https://dwarfdeve.github.io/mwif-site/`.
 
 ## Future backend boundary
 
