@@ -60,7 +60,16 @@ export default function Home() {
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
   const [generatedFile, setGeneratedFile] = useState<File | null>(null);
   const [storeFilter, setStoreFilter] = useState<"ALL" | "MEME" | "STICKER" | "GIF">("ALL");
+  const [walletAddress, setWalletAddress] = useState<string | null>(null);
+  const [walletName, setWalletName] = useState<"Phantom" | "Solflare" | null>(null);
+  const [walletStatus, setWalletStatus] = useState("WALLET // STANDBY");
   const visibleStoreAssets = useMemo(() => storeFilter === "ALL" ? classicStoreAssets : classicStoreAssets.filter((asset) => asset.category === storeFilter), [storeFilter]);
+
+  useEffect(() => {
+    const walletWindow = window as typeof window & { phantom?: { solana?: unknown }; solflare?: unknown; solana?: unknown };
+    const hasProvider = Boolean(walletWindow.phantom?.solana || walletWindow.solflare || walletWindow.solana);
+    setWalletStatus(hasProvider ? "WALLET // READY" : "WALLET // INSTALL PHANTOM / SOLFLARE");
+  }, []);
   const lastShareIndex = useRef(-1);
 
   useEffect(() => {
@@ -167,6 +176,41 @@ export default function Home() {
     }
   }
 
+  async function connectWallet(kind: "Phantom" | "Solflare") {
+    const walletWindow = window as typeof window & { phantom?: { solana?: any }; solflare?: any; solana?: any };
+    const provider = kind === "Phantom" ? (walletWindow.phantom?.solana || walletWindow.solana) : walletWindow.solflare;
+    if (!provider) {
+      setWalletStatus(`${kind.toUpperCase()} // NOT INSTALLED`);
+      window.open(kind === "Phantom" ? "https://phantom.app/" : "https://solflare.com/", "_blank", "noopener,noreferrer");
+      return;
+    }
+    try {
+      const response = await provider.connect();
+      const address = response?.publicKey?.toString?.() || provider.publicKey?.toString?.();
+      if (address) {
+        setWalletAddress(address);
+        setWalletName(kind);
+        setWalletStatus(`${kind.toUpperCase()} // CONNECTED`);
+        provider.on?.("disconnect", () => {
+          setWalletAddress(null);
+          setWalletName(null);
+          setWalletStatus("WALLET // DISCONNECTED");
+        });
+      }
+    } catch {
+      setWalletStatus(`${kind.toUpperCase()} // CONNECTION CANCELLED`);
+    }
+  }
+
+  async function disconnectWallet() {
+    const walletWindow = window as typeof window & { phantom?: { solana?: any }; solflare?: any; solana?: any };
+    const provider = walletName === "Phantom" ? (walletWindow.phantom?.solana || walletWindow.solana) : walletWindow.solflare;
+    try { await provider?.disconnect?.(); } catch { /* provider may already be disconnected */ }
+    setWalletAddress(null);
+    setWalletName(null);
+    setWalletStatus("WALLET // DISCONNECTED");
+  }
+
   function pressF() {
     const next = pressed + 1;
     const clickSound = new Audio("/manus-storage/click_b18b5911.mp3");
@@ -207,7 +251,7 @@ export default function Home() {
       </section>
 
       <section className="press-section" id="press-f" style={{ backgroundImage: `linear-gradient(rgba(10,10,10,.7), rgba(10,10,10,.9)), url(${PURPLE_ORBIT})` }}>
-        <div className="press-inner page-frame"><div className="section-heading press-heading"><span className="section-index">[01]</span><h2>PRESS <strong>F</strong> TO PAY RESPECTS</h2><span className="section-rule" /></div><p className="press-copy">For the bags we lost. For the bags we build. For the ones still holding.</p><div className="press-stage">{falling.map((id, index) => <span className={`falling-f falling-${index + 1}`} key={id}>F</span>)}<button className="press-button" onClick={pressF} aria-label="Press F to pay respects">F</button></div><div className="press-score-row"><div className="press-score"><p className="counter"><span>F's Pressed:</span> {formattedCount}</p>{badge && <span className="f-badge">{badge}</span>}</div><button className="share-x-button" type="button" onClick={shareMyScore}>Share My Score <span>↗</span></button></div><p className="counter-note">local_storage // persistence enabled</p>{generatedImage && <div className="share-image-panel"><div className="share-image-preview"><img src={generatedImage} alt={`Generated $MWIF share image showing ${formattedCount} F's Pressed`} /></div><div className="share-image-actions"><span>share_image // generated on tap</span><div><a className="share-image-button" href={generatedImage} download={generatedFile?.name || "mwif-f-share.png"}>Download PNG ↘</a><button className="share-image-button" type="button" onClick={shareGeneratedImage}>Share Image ↗</button></div></div></div>}</div>
+        <div className="press-inner page-frame"><div className="section-heading press-heading"><span className="section-index">[01]</span><h2>PRESS <strong>F</strong> TO PAY RESPECTS</h2><span className="section-rule" /></div><p className="press-copy">For the bags we lost. For the bags we build. For the ones still holding.</p><div className="press-stage">{falling.map((id, index) => <span className={`falling-f falling-${index + 1}`} key={id}>F</span>)}<button className="press-button" onClick={pressF} aria-label="Press F to pay respects">F</button></div><div className="press-score-row"><div className="press-score"><p className="counter"><span>F's Pressed:</span> {formattedCount}</p>{badge && <span className="f-badge">{badge}</span>}</div><button className="share-x-button" type="button" onClick={shareMyScore}>Share My Score <span>↗</span></button></div><p className="counter-note">local_storage // persistence enabled</p><div className="wallet-panel"><div className="wallet-panel-head"><span>NFT_DROP // WALLET READY</span><span>{walletStatus}</span></div><div className="wallet-actions">{walletAddress ? <><span className="wallet-address">{walletName} // {walletAddress.slice(0, 4)}...{walletAddress.slice(-4)}</span><button className="wallet-button" type="button" onClick={disconnectWallet}>DISCONNECT</button></> : <><button className="wallet-button" type="button" onClick={() => connectWallet("Phantom")}>CONNECT PHANTOM</button><button className="wallet-button" type="button" onClick={() => connectWallet("Solflare")}>CONNECT SOLFLARE</button></>}</div><p className="wallet-note">connect only // minting disabled</p></div>{generatedImage && <div className="share-image-panel"><div className="share-image-preview"><img src={generatedImage} alt={`Generated $MWIF share image showing ${formattedCount} F's Pressed`} /></div><div className="share-image-actions"><span>share_image // generated on tap</span><div><a className="share-image-button" href={generatedImage} download={generatedFile?.name || "mwif-f-share.png"}>Download PNG ↘</a><button className="share-image-button" type="button" onClick={shareGeneratedImage}>Share Image ↗</button></div></div></div>}</div>
       </section>
 
       <section className="values-section page-frame" id="what-is-fff"><div className="section-heading"><span className="section-index">[02]</span><h2>WHAT IS <strong>FFF</strong></h2><span className="section-rule" /></div><p className="section-intro">Three letters. One operating system. No exit strategy.</p><div className="value-grid">{cards.map((card) => <article className="value-card" key={card.code}><div className="card-top"><span>{card.code} //</span><span>{card.accent}</span></div><div className="card-glyph">F</div><h3>{card.title}</h3><p>{card.body}</p><span className="card-arrow">↘</span></article>)}</div></section>

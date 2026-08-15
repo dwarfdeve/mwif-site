@@ -87,7 +87,15 @@
 
 ## GitHub push
 
-- [ ] Confirm the latest verified project state is the source to push.
-- [ ] Prepare a private GitHub repository named `mwif-site` unless a conflict requires a fallback name.
-- [ ] Commit the current project code and push the default branch.
-- [ ] Verify the remote repository and report its URL.
+- [x] Confirm the latest verified project state is the source to push.
+- [x] Prepare a private GitHub repository named `mwif-site` unless a conflict requires a fallback name.
+- [x] Commit the current project code and push the default branch.
+- [x] Verify the remote repository and report its URL.
+
+## Solana wallet connection
+
+- [x] Add a preparation-only wallet control for Phantom and Solflare.
+- [x] Detect installed providers and show install guidance when unavailable.
+- [x] Support connect, connected-address display, and disconnect states.
+- [x] Keep the control responsive and aligned with the terminal styling.
+- [x] Verify the wallet UI and production build without adding transaction logic.
