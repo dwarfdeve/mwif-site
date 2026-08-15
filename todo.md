@@ -161,3 +161,9 @@
 - [x] Add smooth scroll-reveal animations to major landing-page sections.
 - [x] Add refined hover and press feedback to primary buttons while respecting reduced-motion preferences.
 - [x] Verify desktop/mobile rendering and save a checkpoint for the interaction pass.
+
+## F-post download consistency fix
+
+- [x] Trace all generated-post and download paths to identify the multiple-format behavior.
+- [x] Standardize the downloadable F-post to one fixed canvas format and design.
+- [x] Verify the generated preview, download filename, and share flow on desktop and mobile.

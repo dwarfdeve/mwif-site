@@ -9,6 +9,8 @@ const F_MARK_URL = storagePath("mwif-f-mark_f820e130.png");
 const TERMINAL_TEXTURE = storagePath("mwif-terminal-grid_e1e029b5.png");
 const PURPLE_ORBIT = storagePath("mwif-purple-orbit_b50a1426.png");
 const GREEN_NOISE = storagePath("mwif-green-noise_962fb930.png");
+const SHARE_IMAGE_SIZE = 1080;
+const SHARE_IMAGE_FILENAME = "mwif-f-share.png";
 
 const mediaAssets = [
   { kind: "PHOTO", name: "late_night_conviction.png", format: "X / TELEGRAM", url: storagePath("mwif-meme-photo-01_37b9c8a3.png") },
@@ -112,9 +114,15 @@ export default function Home() {
   }
 
   function createShareImage(count: number) {
+    const logoElement = document.querySelector(".mwif-logo") as HTMLImageElement | null;
+    if (logoElement && !logoElement.complete) {
+      logoElement.addEventListener("load", () => createShareImage(count), { once: true });
+      return;
+    }
+
     const canvas = document.createElement("canvas");
-    canvas.width = 1080;
-    canvas.height = 1080;
+    canvas.width = SHARE_IMAGE_SIZE;
+    canvas.height = SHARE_IMAGE_SIZE;
     const context = canvas.getContext("2d");
     if (!context) return;
 
@@ -155,7 +163,6 @@ export default function Home() {
     context.fillStyle = "#00FF94";
     context.fillText("man_with_f.exe // live count", 70, 985);
 
-    const logoElement = document.querySelector(".mwif-logo") as HTMLImageElement | null;
     if (logoElement?.complete && logoElement.naturalWidth > 0) {
       context.globalAlpha = 0.95;
       context.drawImage(logoElement, 700, 90, 290, 290);
@@ -170,7 +177,7 @@ export default function Home() {
       if (!blob) return;
       const url = URL.createObjectURL(blob);
       setGeneratedImage(url);
-      setGeneratedFile(new File([blob], `mwif-f-${count}.png`, { type: "image/png" }));
+      setGeneratedFile(new File([blob], SHARE_IMAGE_FILENAME, { type: "image/png" }));
     }, "image/png");
   }
 
@@ -230,7 +237,7 @@ export default function Home() {
       </section>
 
       <section className="press-section scroll-reveal" id="press-f" data-reveal style={{ backgroundImage: `linear-gradient(rgba(10,10,10,.7), rgba(10,10,10,.9)), url(${PURPLE_ORBIT})` }}>
-        <div className="press-inner page-frame"><div className="section-heading press-heading"><span className="section-index">[01]</span><h2>PRESS <strong>F</strong> TO PAY RESPECTS</h2><span className="section-rule" /></div><p className="press-copy">For the bags we lost. For the bags we build. For the ones still holding.</p><div className="press-stage">{falling.map((id, index) => <span className={`falling-f falling-${index + 1}`} key={id}>F</span>)}<button className="press-button" data-button onClick={pressF} aria-label="Press F to pay respects">F</button></div><div className="press-score-row"><div className="press-score"><p className="counter"><span>F's Pressed:</span> {formattedCount}</p>{badge && <span className="f-badge">{badge}</span>}</div><button className="share-x-button" data-button type="button" onClick={shareMyScore}>Share My Score <span>↗</span></button></div><p className="counter-note">local_storage // persistence enabled</p>{generatedImage && <div className="share-image-panel"><div className="share-image-preview"><img src={generatedImage} alt={`Generated $MWIF share image showing ${formattedCount} F's Pressed`} /></div><div className="share-image-actions"><span>share_image // generated on tap</span><div><a className="share-image-button" href={generatedImage} download={generatedFile?.name || "mwif-f-share.png"}>Download PNG ↘</a><button className="share-image-button" type="button" onClick={shareGeneratedImage}>Share Image ↗</button></div></div></div>}</div>
+        <div className="press-inner page-frame"><div className="section-heading press-heading"><span className="section-index">[01]</span><h2>PRESS <strong>F</strong> TO PAY RESPECTS</h2><span className="section-rule" /></div><p className="press-copy">For the bags we lost. For the bags we build. For the ones still holding.</p><div className="press-stage">{falling.map((id, index) => <span className={`falling-f falling-${index + 1}`} key={id}>F</span>)}<button className="press-button" data-button onClick={pressF} aria-label="Press F to pay respects">F</button></div><div className="press-score-row"><div className="press-score"><p className="counter"><span>F's Pressed:</span> {formattedCount}</p>{badge && <span className="f-badge">{badge}</span>}</div><button className="share-x-button" data-button type="button" onClick={shareMyScore}>Share My Score <span>↗</span></button></div><p className="counter-note">local_storage // persistence enabled // export_master: 1080x1080 PNG</p>{generatedImage && <div className="share-image-panel"><div className="share-image-preview"><img src={generatedImage} alt={`Generated $MWIF share image showing ${formattedCount} F's Pressed`} /></div><div className="share-image-actions"><span>share_image // SINGLE MASTER // 1080x1080 PNG</span><div><a className="share-image-button" href={generatedImage} download={SHARE_IMAGE_FILENAME}>Download Master PNG ↘</a><button className="share-image-button" type="button" onClick={shareGeneratedImage}>Share Master Image ↗</button></div></div></div>}</div>
       </section>
 
       <section className="values-section page-frame scroll-reveal" id="what-is-fff" data-reveal><div className="section-heading"><span className="section-index">[02]</span><h2>WHAT IS <strong>FFF</strong></h2><span className="section-rule" /></div><p className="section-intro">Three letters. One operating system. No exit strategy.</p><div className="value-grid">{cards.map((card) => <article className="value-card" key={card.code}><div className="card-top"><span>{card.code} //</span><span>{card.accent}</span></div><div className="card-glyph">F</div><h3>{card.title}</h3><p>{card.body}</p><span className="card-arrow">↘</span></article>)}</div></section>
