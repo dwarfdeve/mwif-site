@@ -70,6 +70,12 @@ export default function Home() {
   }, [typedText]);
 
   const formattedCount = useMemo(() => pressed.toLocaleString("en-US"), [pressed]);
+  const badge = pressed >= 1000 ? "1000 F Club" : pressed >= 500 ? "500 F Club" : pressed >= 100 ? "100 F Club" : null;
+
+  function shareMyScore() {
+    const shareText = `I pressed F ${pressed} times for $MWIF 🫡 https://mwifcoin-x9pwj42b.manus.space`;
+    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`, "_blank", "noopener,noreferrer");
+  }
 
   function shareOnX() {
     let nextIndex = Math.floor(Math.random() * memePostTemplates.length);
@@ -163,6 +169,9 @@ export default function Home() {
 
   function pressF() {
     const next = pressed + 1;
+    const clickSound = new Audio("/manus-storage/click_b18b5911.mp3");
+    clickSound.volume = 0.22;
+    clickSound.play().catch(() => undefined);
     setPressed(next);
     window.localStorage.setItem("mwif-f-count", String(next));
     createShareImage(next);
@@ -198,7 +207,7 @@ export default function Home() {
       </section>
 
       <section className="press-section" id="press-f" style={{ backgroundImage: `linear-gradient(rgba(10,10,10,.7), rgba(10,10,10,.9)), url(${PURPLE_ORBIT})` }}>
-        <div className="press-inner page-frame"><div className="section-heading press-heading"><span className="section-index">[01]</span><h2>PRESS <strong>F</strong> TO PAY RESPECTS</h2><span className="section-rule" /></div><p className="press-copy">For the bags we lost. For the bags we build. For the ones still holding.</p><div className="press-stage">{falling.map((id, index) => <span className={`falling-f falling-${index + 1}`} key={id}>F</span>)}<button className="press-button" onClick={pressF} aria-label="Press F to pay respects">F</button></div><div className="press-score-row"><p className="counter"><span>F's Pressed:</span> {formattedCount}</p><button className="share-x-button" type="button" onClick={shareOnX}>Share a meme on X <span>↗</span></button></div><p className="counter-note">local_storage // persistence enabled</p>{generatedImage && <div className="share-image-panel"><div className="share-image-preview"><img src={generatedImage} alt={`Generated $MWIF share image showing ${formattedCount} F's Pressed`} /></div><div className="share-image-actions"><span>share_image // generated on tap</span><div><a className="share-image-button" href={generatedImage} download={generatedFile?.name || "mwif-f-share.png"}>Download PNG ↘</a><button className="share-image-button" type="button" onClick={shareGeneratedImage}>Share Image ↗</button></div></div></div>}</div>
+        <div className="press-inner page-frame"><div className="section-heading press-heading"><span className="section-index">[01]</span><h2>PRESS <strong>F</strong> TO PAY RESPECTS</h2><span className="section-rule" /></div><p className="press-copy">For the bags we lost. For the bags we build. For the ones still holding.</p><div className="press-stage">{falling.map((id, index) => <span className={`falling-f falling-${index + 1}`} key={id}>F</span>)}<button className="press-button" onClick={pressF} aria-label="Press F to pay respects">F</button></div><div className="press-score-row"><div className="press-score"><p className="counter"><span>F's Pressed:</span> {formattedCount}</p>{badge && <span className="f-badge">{badge}</span>}</div><button className="share-x-button" type="button" onClick={shareMyScore}>Share My Score <span>↗</span></button></div><p className="counter-note">local_storage // persistence enabled</p>{generatedImage && <div className="share-image-panel"><div className="share-image-preview"><img src={generatedImage} alt={`Generated $MWIF share image showing ${formattedCount} F's Pressed`} /></div><div className="share-image-actions"><span>share_image // generated on tap</span><div><a className="share-image-button" href={generatedImage} download={generatedFile?.name || "mwif-f-share.png"}>Download PNG ↘</a><button className="share-image-button" type="button" onClick={shareGeneratedImage}>Share Image ↗</button></div></div></div>}</div>
       </section>
 
       <section className="values-section page-frame" id="what-is-fff"><div className="section-heading"><span className="section-index">[02]</span><h2>WHAT IS <strong>FFF</strong></h2><span className="section-rule" /></div><p className="section-intro">Three letters. One operating system. No exit strategy.</p><div className="value-grid">{cards.map((card) => <article className="value-card" key={card.code}><div className="card-top"><span>{card.code} //</span><span>{card.accent}</span></div><div className="card-glyph">F</div><h3>{card.title}</h3><p>{card.body}</p><span className="card-arrow">↘</span></article>)}</div></section>

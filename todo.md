@@ -74,3 +74,13 @@
 - [x] Prepare 20 additional classic $MWIF sticker PNGs.
 - [x] Prepare 20 additional classic $MWIF GIFs.
 - [x] Put every asset into the static STORE menu with direct downloads.
+
+## Press F + NFT scaffold upgrade
+
+- [x] Preserve the current black terminal meme vibe and logo while syncing requested visible behavior.
+- [x] Add click.mp3 playback to Press F taps with a safe fallback if audio is unavailable.
+- [x] Add 100 F Club, 500 F Club, and 1000 F Club badge states.
+- [x] Add the exact Share My Score X intent behavior using the live count.
+- [x] Preserve typing animation, green CTA pulse, F01 matrix, marquee, card responsiveness, and footer copy.
+- [ ] Complete the hidden NFT scaffold after receiving the remainder of the truncated config specification.
+- [x] Verify desktop/mobile interactions and production build.
