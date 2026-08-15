@@ -15,3 +15,9 @@
 - [x] Add a Share on X button beside the Press F score.
 - [x] Generate a URL-encoded X intent containing the current F's Pressed score.
 - [x] Verify the button styling, responsive layout, and production build.
+
+## Social links update
+
+- [x] Replace the placeholder X link with https://x.com/iam_mwif?s=11.
+- [x] Replace the placeholder Telegram link with https://t.me/mwifportal.
+- [x] Verify the updated links and production build.

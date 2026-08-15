@@ -96,7 +96,7 @@ export default function Home() {
 
       <section className="signal-section page-frame" style={{ backgroundImage: `url(${GREEN_NOISE})` }}><div className="signal-line"><span>COMMUNITY_SIGNAL</span><span>// FFF ONLY</span></div><div className="signal-grid"><h2>STAY<br /><span>FORTIFIED.</span></h2><p>Some coins have utility. We have a story, a terminal, and an unreasonable amount of F.</p></div></section>
 
-      <footer className="footer page-frame"><div className="footer-top"><div className="contract-label">Contract: <strong>TBA</strong> <span>|</span> Launching Soon</div><div className="footer-links"><a href="#">[ X ]</a><a href="#">[ Telegram ]</a><a href="#">[ GitHub ]</a><a href="#">[ Jupiter ]</a></div></div><div className="footer-gang">Join the FFF Gang</div><div className="footer-bottom"><span>$MWIF is a meme coin. Not financial advice.</span><span>© 2025 MWIF / END_OF_FILE</span></div></footer>
+      <footer className="footer page-frame"><div className="footer-top"><div className="contract-label">Contract: <strong>TBA</strong> <span>|</span> Launching Soon</div><div className="footer-links"><a href="https://x.com/iam_mwif?s=11" target="_blank" rel="noreferrer">[ X ]</a><a href="https://t.me/mwifportal" target="_blank" rel="noreferrer">[ Telegram ]</a><a href="#">[ GitHub ]</a><a href="#">[ Jupiter ]</a></div></div><div className="footer-gang">Join the FFF Gang</div><div className="footer-bottom"><span>$MWIF is a meme coin. Not financial advice.</span><span>© 2025 MWIF / END_OF_FILE</span></div></footer>
       <div className="marquee" aria-label="FFF"><div className="marquee-track">FFF FFF FFF FFF FFF&nbsp;&nbsp;&nbsp;FFF FFF FFF FFF FFF&nbsp;&nbsp;&nbsp;</div></div>
     </main>
   );
