@@ -3,11 +3,11 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
 const storagePath = (filename: string) => `${import.meta.env.BASE_URL.replace(/\/$/, "")}/mwif-assets/${filename}`;
-const LOGO_URL = storagePath("logo_2005e11e.png");
-const F_MARK_URL = storagePath("mwif-f-mark_f820e130.png");
-const TERMINAL_TEXTURE = storagePath("mwif-terminal-grid_e1e029b5.png");
-const PURPLE_ORBIT = storagePath("mwif-purple-orbit_b50a1426.png");
-const GREEN_NOISE = storagePath("mwif-green-noise_962fb930.png");
+const LOGO_URL = storagePath("logo_2005e11e.webp");
+const F_MARK_URL = storagePath("mwif-f-mark_f820e130.webp");
+const TERMINAL_TEXTURE = storagePath("mwif-terminal-grid_e1e029b5.webp");
+const PURPLE_ORBIT = storagePath("mwif-purple-orbit_b50a1426.webp");
+const GREEN_NOISE = storagePath("mwif-green-noise_962fb930.webp");
 const SHARE_IMAGE_SIZE = 1080;
 const SHARE_IMAGE_FILENAME = "mwif-f-share.png";
 
@@ -305,7 +305,7 @@ export default function Home() {
       <div className="matrix-layer" aria-hidden="true">{matrixChars.map((item) => <span key={item.id} style={{ left: item.left, animationDelay: item.delay, animationDuration: item.duration }}>{item.char}</span>)}</div>
       <div className="ambient ambient-top" aria-hidden="true" />
       <header className="topbar page-frame">
-        <a className="micro-brand" href="#top" aria-label="MWIF home"><img src={F_MARK_URL} alt="" /><span>MWIF / 001</span></a>
+        <a className="micro-brand" href="#top" aria-label="MWIF home"><img src={F_MARK_URL} alt="" loading="eager" decoding="async" /><span>MWIF / 001</span></a>
         <nav className="topbar-nav" aria-label="Primary"><a className="store-menu-link" href="#/store" aria-label="Open the MWIF static media store"><span className="store-menu-signal" aria-hidden="true" /><span className="store-menu-label">STORE</span><strong>145 ASSETS</strong><span className="store-menu-arrow" aria-hidden="true">↘</span></a></nav><span className="system-status"><i /> SYSTEM ONLINE</span>
       </header>
 
@@ -313,7 +313,7 @@ export default function Home() {
         <div className="eyebrow"><span>BOOT_SEQUENCE</span><span>v.2026.01</span></div>
         <div className="hero-grid">
           <div className="hero-copy"><p className="hero-kicker">// A MEME COIN FOR THE F-FORTIFIED</p><h1>MAN WITH <em>F</em></h1><p className="hero-subcopy">No roadmap. No promises. Just conviction, questionable decisions, and a community that knows when to press F.</p></div>
-          <div className="hero-mark-wrap"><div className="logo-frame"><span className="corner corner-tl" /><span className="corner corner-br" /><img className="mwif-logo" src={LOGO_URL} alt="MWIF graffiti logo with two cartoon faces" /></div><div className="logo-caption"><span>asset://logo.png</span><span>768 × 768</span></div></div>
+          <div className="hero-mark-wrap"><div className="logo-frame"><span className="corner corner-tl" /><span className="corner corner-br" /><img className="mwif-logo" src={LOGO_URL} alt="MWIF graffiti logo with two cartoon faces" loading="eager" decoding="async" fetchPriority="high" /></div><div className="logo-caption"><span>asset://logo.png</span><span>768 × 768</span></div></div>
         </div>
         <div className="terminal-window" style={{ backgroundImage: `linear-gradient(rgba(10,10,10,.8), rgba(10,10,10,.92)), url(${TERMINAL_TEXTURE})` }}>
           <div className="terminal-bar"><span className="terminal-dots"><i /><i /><i /></span><span>/usr/bin/man_with_f</span><span className="terminal-live">LIVE</span></div>

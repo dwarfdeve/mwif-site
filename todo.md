@@ -12,3 +12,9 @@
 - [x] Add proprietary-use, modification, AI/editor, and connected-editor warnings to `LICENSE`, `NOTICE.md`, and `README.md`.
 - [x] State clearly that public browser code remains technically inspectable and that written notices define intended rights rather than guaranteeing technical prevention.
 - [ ] Obtain written authorization before any reuse, derivative work, model training, or third-party editing workflow.
+
+## Image loading performance
+
+- [x] Audit image sizes, formats, and loading paths.
+- [x] Optimize oversized static images and add responsive loading hints without changing visual output.
+- [x] Verify home/STORE display, build integrity, and public deployment.
