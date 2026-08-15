@@ -61,3 +61,16 @@
 - [x] Add download and social-share controls for the generated image.
 - [x] Keep the generator lightweight and compatible with the existing static media pack.
 - [x] Verify image generation, responsive preview, and production build.
+
+## Static STORE menu clarification
+
+- [x] Keep every store asset static and transferable.
+- [x] Organize all meme images, sticker PNGs, and GIF files under a dedicated STORE menu.
+- [x] Provide static previews, categories, and direct download links without runtime generation.
+
+## Classic asset quantities confirmed
+
+- [x] Prepare approximately 100 distinct classic $MWIF meme images.
+- [x] Prepare 20 additional classic $MWIF sticker PNGs.
+- [x] Prepare 20 additional classic $MWIF GIFs.
+- [x] Put every asset into the static STORE menu with direct downloads.

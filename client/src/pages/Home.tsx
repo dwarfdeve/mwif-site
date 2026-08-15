@@ -1,5 +1,6 @@
 /* Phosphor Terminal style: neo-brutalist terminal UI, black void, phosphor green signal, purple interrupt moments, visible scanlines, deliberate command-line rhythm. */
 import { useEffect, useMemo, useRef, useState } from "react";
+import { classicStoreAssets } from "../lib/classicStoreAssets";
 
 const LOGO_URL = "/manus-storage/logo_2005e11e.png";
 const F_MARK_URL = "/manus-storage/mwif-f-mark_f820e130.png";
@@ -58,6 +59,8 @@ export default function Home() {
   const [falling, setFalling] = useState<number[]>([]);
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
   const [generatedFile, setGeneratedFile] = useState<File | null>(null);
+  const [storeFilter, setStoreFilter] = useState<"ALL" | "MEME" | "STICKER" | "GIF">("ALL");
+  const visibleStoreAssets = useMemo(() => storeFilter === "ALL" ? classicStoreAssets : classicStoreAssets.filter((asset) => asset.category === storeFilter), [storeFilter]);
   const lastShareIndex = useRef(-1);
 
   useEffect(() => {
@@ -177,7 +180,7 @@ export default function Home() {
       <div className="ambient ambient-top" aria-hidden="true" />
       <header className="topbar page-frame">
         <a className="micro-brand" href="#top" aria-label="MWIF home"><img src={F_MARK_URL} alt="" /><span>MWIF / 001</span></a>
-        <span className="system-status"><i /> SYSTEM ONLINE</span>
+        <nav className="topbar-nav" aria-label="Primary"><a href="#store">STORE</a></nav><span className="system-status"><i /> SYSTEM ONLINE</span>
       </header>
 
       <section id="top" className="hero page-frame">
@@ -202,7 +205,7 @@ export default function Home() {
 
       <section className="signal-section page-frame" style={{ backgroundImage: `url(${GREEN_NOISE})` }}><div className="signal-line"><span>COMMUNITY_SIGNAL</span><span>// FFF ONLY</span></div><div className="signal-grid"><h2>STAY<br /><span>FORTIFIED.</span></h2><p>Some coins have utility. We have a story, a terminal, and an unreasonable amount of F.</p></div></section>
 
-      <section className="media-section page-frame" id="media-pack"><div className="section-heading"><span className="section-index">[03]</span><h2>STATIC <strong>MEDIA_DROP</strong></h2><span className="section-rule" /></div><p className="section-intro">Pre-made assets for the group chat, the timeline, and the next questionable decision. Download, transfer, deploy.</p><div className="media-grid">{mediaAssets.map((asset) => <article className="media-card" key={asset.name}><div className="media-preview"><img src={asset.url} alt={asset.name.replaceAll("_", " ")} loading="lazy" /></div><div className="media-meta"><span className="media-kind">{asset.kind}</span><span>{asset.format}</span></div><h3>{asset.name}</h3><div className="media-actions"><a href={asset.url} download target="_blank" rel="noreferrer">DOWNLOAD ↘</a><a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`Deploying ${asset.name} for $MWIF. FFF gang only.`)}`} target="_blank" rel="noreferrer">POST ON X ↗</a></div></article>)}</div></section>
+      <section className="media-section page-frame" id="store"><div className="section-heading"><span className="section-index">[03]</span><h2><strong>STORE</strong> // CLASSIC_DROP</h2><span className="section-rule" /></div><p className="section-intro">145 static F assets for the group chat, the timeline, and the next questionable decision. Choose a category, download, transfer, deploy.</p><div className="store-toolbar" role="tablist" aria-label="Store asset categories">{(["ALL", "MEME", "STICKER", "GIF"] as const).map((filter) => <button key={filter} type="button" className={`store-filter ${storeFilter === filter ? "is-active" : ""}`} onClick={() => setStoreFilter(filter)} role="tab" aria-selected={storeFilter === filter}>{filter} <span>{filter === "ALL" ? classicStoreAssets.length : classicStoreAssets.filter((asset) => asset.category === filter).length}</span></button>)}</div><div className="media-grid store-grid">{visibleStoreAssets.map((asset) => <article className="media-card" key={asset.filename}><div className="media-preview"><img src={asset.url} alt={asset.label} loading="lazy" /></div><div className="media-meta"><span className="media-kind">{asset.category}</span><span>STATIC</span></div><h3>{asset.label}</h3><div className="media-actions"><a href={asset.url} download={asset.filename} target="_blank" rel="noreferrer">DOWNLOAD ↘</a><a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`Deploying ${asset.label} for $MWIF. FFF gang only.`)}`} target="_blank" rel="noreferrer">POST ON X ↗</a></div></article>)}</div></section>
 
       <footer className="footer page-frame"><div className="footer-top"><div className="contract-label">Contract: <strong>TBA</strong> <span>|</span> Launching Soon</div><div className="footer-links"><a href="https://x.com/iam_mwif?s=11" target="_blank" rel="noreferrer">[ X ]</a><a href="https://t.me/mwifportal" target="_blank" rel="noreferrer">[ Telegram ]</a><a href="#">[ GitHub ]</a><a href="#">[ Jupiter ]</a></div></div><div className="footer-gang">Join the FFF Gang</div><div className="footer-bottom"><span>$MWIF is a meme coin. Not financial advice. FFF gang only.</span><span>© 2025 MWIF / END_OF_FILE</span></div></footer>
       <div className="marquee" aria-label="FFF"><div className="marquee-track">FFF FFF FFF FFF&nbsp;&nbsp;&nbsp;FFF FFF FFF FFF&nbsp;&nbsp;&nbsp;</div></div>
