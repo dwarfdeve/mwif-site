@@ -182,7 +182,7 @@
 
 ## F-counter meme carousel upgrade
 
-- [ ] Inspect the current share-image generator and export controls.
-- [ ] Add swipeable/clickable terminal-style meme templates with the live F count.
-- [ ] Validate previews and consistent 1080x1080 PNG downloads on desktop/mobile.
-- [ ] Rebuild and push the complete static site to GitHub.
+- [x] Inspect the current share-image generator and export controls.
+- [x] Add swipeable/clickable terminal-style meme templates with the live F count.
+- [x] Validate previews and consistent 1080x1080 PNG downloads on desktop/mobile.
+- [x] Rebuild and push the complete static site to GitHub.
