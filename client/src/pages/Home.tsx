@@ -56,6 +56,8 @@ export default function Home() {
     return Number(window.localStorage.getItem("mwif-f-count") || 0);
   });
   const [falling, setFalling] = useState<number[]>([]);
+  const [generatedImage, setGeneratedImage] = useState<string | null>(null);
+  const [generatedFile, setGeneratedFile] = useState<File | null>(null);
   const lastShareIndex = useRef(-1);
 
   useEffect(() => {
@@ -77,10 +79,90 @@ export default function Home() {
     window.open(shareUrl, "_blank", "noopener,noreferrer");
   }
 
+  function createShareImage(count: number) {
+    const canvas = document.createElement("canvas");
+    canvas.width = 1080;
+    canvas.height = 1080;
+    const context = canvas.getContext("2d");
+    if (!context) return;
+
+    context.fillStyle = "#0A0A0A";
+    context.fillRect(0, 0, canvas.width, canvas.height);
+    context.strokeStyle = "#00FF94";
+    context.lineWidth = 4;
+    context.strokeRect(34, 34, canvas.width - 68, canvas.height - 68);
+    context.globalAlpha = 0.12;
+    context.strokeStyle = "#9945FF";
+    context.lineWidth = 2;
+    for (let y = 90; y < 1040; y += 30) {
+      context.beginPath();
+      context.moveTo(50, y);
+      context.lineTo(1030, y);
+      context.stroke();
+    }
+    context.globalAlpha = 1;
+    context.font = "700 28px JetBrains Mono, monospace";
+    context.fillStyle = "#00FF94";
+    context.fillText("MWIF // SHARE_PACKET", 70, 105);
+    context.fillStyle = "#FFFFFF";
+    context.font = "800 110px JetBrains Mono, monospace";
+    context.fillText("PRESS F", 70, 250);
+    context.fillStyle = "#9945FF";
+    context.fillText("TO PAY", 70, 370);
+    context.fillStyle = "#FFFFFF";
+    context.fillText("RESPECTS", 70, 490);
+    context.fillStyle = "#00FF94";
+    context.font = "700 34px JetBrains Mono, monospace";
+    context.fillText("F's Pressed:", 70, 650);
+    context.fillStyle = "#FFFFFF";
+    context.font = "800 118px JetBrains Mono, monospace";
+    context.fillText(count.toLocaleString("en-US"), 70, 790);
+    context.fillStyle = "#9945FF";
+    context.font = "700 28px JetBrains Mono, monospace";
+    context.fillText("$MWIF // FFF GANG ONLY", 70, 930);
+    context.fillStyle = "#00FF94";
+    context.fillText("man_with_f.exe // live count", 70, 985);
+
+    const logoElement = document.querySelector(".mwif-logo") as HTMLImageElement | null;
+    if (logoElement?.complete && logoElement.naturalWidth > 0) {
+      context.globalAlpha = 0.95;
+      context.drawImage(logoElement, 700, 90, 290, 290);
+      context.globalAlpha = 1;
+    } else {
+      context.fillStyle = "#9945FF";
+      context.font = "800 210px JetBrains Mono, monospace";
+      context.fillText("F", 790, 300);
+    }
+
+    canvas.toBlob((blob) => {
+      if (!blob) return;
+      const url = URL.createObjectURL(blob);
+      setGeneratedImage(url);
+      setGeneratedFile(new File([blob], `mwif-f-${count}.png`, { type: "image/png" }));
+    }, "image/png");
+  }
+
+  async function shareGeneratedImage() {
+    if (!generatedFile) return;
+    try {
+      if (navigator.share) {
+        await navigator.share({ files: [generatedFile], title: "$MWIF F count", text: `I pressed F ${formattedCount} times on $MWIF. FFF gang only.` });
+      } else if (generatedImage) {
+        const link = document.createElement("a");
+        link.href = generatedImage;
+        link.download = generatedFile.name;
+        link.click();
+      }
+    } catch {
+      // Sharing can be cancelled by the user; keep the generated image available for download.
+    }
+  }
+
   function pressF() {
     const next = pressed + 1;
     setPressed(next);
     window.localStorage.setItem("mwif-f-count", String(next));
+    createShareImage(next);
     const burst = Array.from({ length: 5 }, (_, index) => Date.now() + index);
     setFalling(burst);
     window.setTimeout(() => setFalling([]), 1550);
@@ -113,7 +195,7 @@ export default function Home() {
       </section>
 
       <section className="press-section" id="press-f" style={{ backgroundImage: `linear-gradient(rgba(10,10,10,.7), rgba(10,10,10,.9)), url(${PURPLE_ORBIT})` }}>
-        <div className="press-inner page-frame"><div className="section-heading press-heading"><span className="section-index">[01]</span><h2>PRESS <strong>F</strong> TO PAY RESPECTS</h2><span className="section-rule" /></div><p className="press-copy">For the bags we lost. For the bags we build. For the ones still holding.</p><div className="press-stage">{falling.map((id, index) => <span className={`falling-f falling-${index + 1}`} key={id}>F</span>)}<button className="press-button" onClick={pressF} aria-label="Press F to pay respects">F</button></div><div className="press-score-row"><p className="counter"><span>F's Pressed:</span> {formattedCount}</p><button className="share-x-button" type="button" onClick={shareOnX}>Share a meme on X <span>↗</span></button></div><p className="counter-note">local_storage // persistence enabled</p></div>
+        <div className="press-inner page-frame"><div className="section-heading press-heading"><span className="section-index">[01]</span><h2>PRESS <strong>F</strong> TO PAY RESPECTS</h2><span className="section-rule" /></div><p className="press-copy">For the bags we lost. For the bags we build. For the ones still holding.</p><div className="press-stage">{falling.map((id, index) => <span className={`falling-f falling-${index + 1}`} key={id}>F</span>)}<button className="press-button" onClick={pressF} aria-label="Press F to pay respects">F</button></div><div className="press-score-row"><p className="counter"><span>F's Pressed:</span> {formattedCount}</p><button className="share-x-button" type="button" onClick={shareOnX}>Share a meme on X <span>↗</span></button></div><p className="counter-note">local_storage // persistence enabled</p>{generatedImage && <div className="share-image-panel"><div className="share-image-preview"><img src={generatedImage} alt={`Generated $MWIF share image showing ${formattedCount} F's Pressed`} /></div><div className="share-image-actions"><span>share_image // generated on tap</span><div><a className="share-image-button" href={generatedImage} download={generatedFile?.name || "mwif-f-share.png"}>Download PNG ↘</a><button className="share-image-button" type="button" onClick={shareGeneratedImage}>Share Image ↗</button></div></div></div>}</div>
       </section>
 
       <section className="values-section page-frame" id="what-is-fff"><div className="section-heading"><span className="section-index">[02]</span><h2>WHAT IS <strong>FFF</strong></h2><span className="section-rule" /></div><p className="section-intro">Three letters. One operating system. No exit strategy.</p><div className="value-grid">{cards.map((card) => <article className="value-card" key={card.code}><div className="card-top"><span>{card.code} //</span><span>{card.accent}</span></div><div className="card-glyph">F</div><h3>{card.title}</h3><p>{card.body}</p><span className="card-arrow">↘</span></article>)}</div></section>

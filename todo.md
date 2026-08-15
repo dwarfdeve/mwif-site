@@ -54,3 +54,10 @@
 - [x] Update footer copy and preserve supplied social destinations.
 - [x] Add viewport and Open Graph metadata using logo.png.
 - [x] Verify desktop/mobile rendering and production build.
+
+## Live F-count share image
+
+- [x] Generate a branded share image in-browser using the current F's Pressed count.
+- [x] Add download and social-share controls for the generated image.
+- [x] Keep the generator lightweight and compatible with the existing static media pack.
+- [x] Verify image generation, responsive preview, and production build.
