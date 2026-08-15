@@ -125,6 +125,13 @@
 
 ## GitHub sync
 
-- [ ] Compare the latest local checkpoint with `github/main`.
-- [ ] Commit any remaining local changes and push all current static-only files.
-- [ ] Verify the public repository URL, remote commit, and docs artifact on GitHub.
+- [x] Compare the latest local checkpoint with `github/main`.
+- [x] Commit any remaining local changes and push all current static-only files.
+- [x] Verify the public repository URL, remote commit, and docs artifact on GitHub.
+
+## Public repository protection
+
+- [ ] Add an All Rights Reserved license file and visible copyright/usage notices.
+- [ ] Add a source header notice without pretending browser code is technically uncopyable.
+- [ ] Apply GitHub branch protection or the closest available canonical-repository control.
+- [ ] Commit, push, and verify the public repository protection state.

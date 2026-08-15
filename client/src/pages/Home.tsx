@@ -1,3 +1,4 @@
+/* Copyright (c) 2026 dwarfdeve / MWIF — Man With F. All rights reserved. */
 /* Phosphor Terminal style: neo-brutalist terminal UI, black void, phosphor green signal, purple interrupt moments, visible scanlines, deliberate command-line rhythm. */
 import { useEffect, useMemo, useRef, useState } from "react";
 import { classicStoreAssets } from "../lib/classicStoreAssets";

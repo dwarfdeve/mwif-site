@@ -1,6 +1,6 @@
 # $MWIF — Man With F
 
-A static React/Vite meme site for `$MWIF`, preserving the black terminal, phosphor-green, Solana-purple, and hand-drawn MWIF logo direction.
+A static React/Vite meme site for `$MWIF`, preserving the black terminal, phosphor-green, Solana-purple, and hand-drawn MWIF logo direction. The project is proprietary and published for canonical viewing and maintenance; see [`LICENSE`](./LICENSE) and [`NOTICE.md`](./NOTICE.md) before using any code or media.
 
 ## Static-only scope
 
