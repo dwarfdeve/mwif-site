@@ -170,6 +170,6 @@
 
 ## GitHub Pages blank-page repair
 
-- [ ] Inspect live HTML, bundle paths, and browser errors for the blank GitHub Pages page.
-- [ ] Repair the root static artifact or base-path mismatch and repush the fix.
-- [ ] Verify the public GitHub Pages URL renders successfully after deployment.
+- [x] Inspect live HTML, bundle paths, and browser errors for the blank GitHub Pages page.
+- [x] Repair the root static artifact or base-path mismatch and repush the fix.
+- [x] Verify the public GitHub Pages URL renders successfully after deployment.

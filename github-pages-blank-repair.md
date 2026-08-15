@@ -1,0 +1,3 @@
+# GitHub Pages Blank-Page Repair
+
+The blank page was caused by the generated root `index.html` referencing JavaScript and CSS with root-absolute paths (`/assets/...`). GitHub Pages serves the project beneath `/mwif-site/`, so those requests targeted the account domain root rather than the project subdirectory. Vite was updated with `base: "./"`, the static root artifact was rebuilt, and commit `5dcd2d9` was pushed to `github/main`. After Pages finished rebuilding, the live index referenced `./assets/index-eu6Jy_oC.js` and `./assets/index-C14ETcjj.css`, both loaded with HTTP 200. Browser verification at `https://dwarfdeve.github.io/mwif-site/?cache=5dcd2d9` showed the MWIF hero, terminal, logo, Press F control, and STORE navigation rendering normally.
