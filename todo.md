@@ -117,8 +117,8 @@
 
 ## Static GitHub Pages cleanup
 
-- [ ] Remove Phantom and Solflare UI, provider detection, connect/disconnect handlers, and NFT wallet messaging.
-- [ ] Remove `nft-config.js` and the hidden NFT placeholder asset manifest/docs from the public project source.
-- [ ] Keep the visible Press F, sound, share, store, and static media features intact.
-- [ ] Add a GitHub Pages-compatible static build workflow and repository instructions.
-- [ ] Verify the static build, public repository contents, and Pages configuration.
+- [x] Remove Phantom and Solflare UI, provider detection, connect/disconnect handlers, and NFT wallet messaging.
+- [x] Remove `nft-config.js` and the hidden NFT placeholder asset manifest/docs from the public project source.
+- [x] Keep the visible Press F, sound, share, store, and static media features intact.
+- [x] Add a committed GitHub Pages-compatible `docs` artifact and repository instructions.
+- [ ] Verify the static build and public repository contents; Pages source selection remains pending in repository Settings because the GitHub integration lacks Pages-write permission.
