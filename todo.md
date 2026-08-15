@@ -42,3 +42,15 @@
 - [x] Remove runtime generator expectations from the media-lab plan.
 - [x] Prepare only transferable static photos, sticker PNGs, and GIF files.
 - [x] Build a static gallery with direct download links and no external runtime dependencies.
+
+## Full website upgrade
+
+- [x] Reconfirm the requested hero typing sequence and character-by-character behavior.
+- [x] Confirm Press F sizing, counter persistence, five falling F letters, and hover scale.
+- [x] Confirm CTA hover/pulse behavior and responsive button sizing.
+- [x] Add F01 matrix background characters and logo glitch hover.
+- [x] Confirm logo sizing, stacked mobile cards, and viewport metadata.
+- [x] Add green-background black-text infinite FFF marquee.
+- [x] Update footer copy and preserve supplied social destinations.
+- [x] Add viewport and Open Graph metadata using logo.png.
+- [x] Verify desktop/mobile rendering and production build.
