@@ -84,3 +84,10 @@
 - [x] Preserve typing animation, green CTA pulse, F01 matrix, marquee, card responsiveness, and footer copy.
 - [ ] Complete the hidden NFT scaffold after receiving the remainder of the truncated config specification.
 - [x] Verify desktop/mobile interactions and production build.
+
+## GitHub push
+
+- [ ] Confirm the latest verified project state is the source to push.
+- [ ] Prepare a private GitHub repository named `mwif-site` unless a conflict requires a fallback name.
+- [ ] Commit the current project code and push the default branch.
+- [ ] Verify the remote repository and report its URL.
