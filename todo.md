@@ -99,3 +99,11 @@
 - [x] Support connect, connected-address display, and disconnect states.
 - [x] Keep the control responsive and aligned with the terminal styling.
 - [x] Verify the wallet UI and production build without adding transaction logic.
+
+## Public GitHub release
+
+- [ ] Audit tracked files and configuration for secrets, wallet credentials, and private tokens.
+- [ ] Commit and push the latest wallet-ready project state.
+- [ ] Change `dwarfdeve/mwif-site` from private to public.
+- [ ] Verify the public repository URL, default branch, and remote commit.
+- [ ] Document that transaction and launch automation backend work is deferred.
