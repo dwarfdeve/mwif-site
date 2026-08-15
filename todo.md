@@ -102,8 +102,15 @@
 
 ## Public GitHub release
 
-- [ ] Audit tracked files and configuration for secrets, wallet credentials, and private tokens.
-- [ ] Commit and push the latest wallet-ready project state.
-- [ ] Change `dwarfdeve/mwif-site` from private to public.
-- [ ] Verify the public repository URL, default branch, and remote commit.
-- [ ] Document that transaction and launch automation backend work is deferred.
+- [x] Audit tracked files and configuration for secrets, wallet credentials, and private tokens.
+- [x] Commit and push the latest wallet-ready project state.
+- [x] Change `dwarfdeve/mwif-site` from private to public.
+- [x] Verify the public repository URL, default branch, and remote commit.
+- [x] Document that transaction and launch automation backend work is deferred.
+
+## Public readable repository clarification
+
+- [x] Keep the normal website source readable in the public repository for coder maintenance and publishing.
+- [x] Exclude secrets, wallet credentials, and private backend configuration.
+- [x] Keep transaction and launch automation backend work separate from this public frontend release.
+- [x] Complete the push after GitHub integration is enabled.
