@@ -122,3 +122,9 @@
 - [x] Keep the visible Press F, sound, share, store, and static media features intact.
 - [x] Add a committed GitHub Pages-compatible `docs` artifact and repository instructions.
 - [ ] Verify the static build and public repository contents; Pages source selection remains pending in repository Settings because the GitHub integration lacks Pages-write permission.
+
+## GitHub sync
+
+- [ ] Compare the latest local checkpoint with `github/main`.
+- [ ] Commit any remaining local changes and push all current static-only files.
+- [ ] Verify the public repository URL, remote commit, and docs artifact on GitHub.
