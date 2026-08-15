@@ -1,0 +1,3 @@
+# GitHub Pages 404 Repair
+
+The repository’s Pages source was configured as `main /`, while the static entrypoint had been stored only under `docs/index.html`, causing the root 404. The static artifact was moved to the repository root as `index.html`, `assets/`, `manus-storage/`, and `.nojekyll`, and the README was updated accordingly. After pushing commit `f4e6af9`, the public URL `https://dwarfdeve.github.io/mwif-site/` loaded the $MWIF page successfully in the browser with the hero, logo, terminal, Press F controls, STORE filters, and downloadable catalog visible. The root, `/index.html`, JS, CSS, and logo requests returned HTTP 200.
