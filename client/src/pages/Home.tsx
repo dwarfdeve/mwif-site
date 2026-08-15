@@ -308,7 +308,7 @@ export default function Home() {
       <div className="ambient ambient-top" aria-hidden="true" />
       <header className="topbar page-frame">
         <a className="micro-brand" href="#top" aria-label="MWIF home"><img src={F_MARK_URL} alt="" /><span>MWIF / 001</span></a>
-        <nav className="topbar-nav" aria-label="Primary"><a className="store-menu-link" href="#store" aria-label="Open the MWIF static media store"><span className="store-menu-signal" aria-hidden="true" /><span className="store-menu-label">STORE</span><strong>145 ASSETS</strong><span className="store-menu-arrow" aria-hidden="true">↘</span></a></nav><span className="system-status"><i /> SYSTEM ONLINE</span>
+        <nav className="topbar-nav" aria-label="Primary"><a className="store-menu-link" href="#/store" aria-label="Open the MWIF static media store"><span className="store-menu-signal" aria-hidden="true" /><span className="store-menu-label">STORE</span><strong>145 ASSETS</strong><span className="store-menu-arrow" aria-hidden="true">↘</span></a></nav><span className="system-status"><i /> SYSTEM ONLINE</span>
       </header>
 
       <section id="top" className="hero page-frame scroll-reveal" data-reveal>

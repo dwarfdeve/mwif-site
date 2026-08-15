@@ -186,3 +186,10 @@
 - [x] Add swipeable/clickable terminal-style meme templates with the live F count.
 - [x] Validate previews and consistent 1080x1080 PNG downloads on desktop/mobile.
 - [x] Rebuild and push the complete static site to GitHub.
+
+## Dedicated STORE page
+
+- [ ] Inspect routing, catalog data, and the current landing-page STORE section.
+- [ ] Create a separate STORE page using the full 105 meme, 20 sticker, and 20 GIF catalog.
+- [ ] Preserve the existing landing-page interface and verify back-navigation, filters, downloads, and responsive layout.
+- [ ] Rebuild, push to GitHub, and save a checkpoint.
