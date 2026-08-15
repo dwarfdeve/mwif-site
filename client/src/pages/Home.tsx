@@ -46,6 +46,13 @@ export default function Home() {
 
   const formattedCount = useMemo(() => pressed.toLocaleString("en-US"), [pressed]);
 
+  function shareOnX() {
+    const suffix = pressed === 1 ? "time" : "times";
+    const tweet = `I pressed F ${formattedCount} ${suffix} on $MWIF. Press F to pay respects. FFF gang only.`;
+    const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweet)}`;
+    window.open(shareUrl, "_blank", "noopener,noreferrer");
+  }
+
   function pressF() {
     const next = pressed + 1;
     setPressed(next);
@@ -82,7 +89,7 @@ export default function Home() {
       </section>
 
       <section className="press-section" id="press-f" style={{ backgroundImage: `linear-gradient(rgba(10,10,10,.7), rgba(10,10,10,.9)), url(${PURPLE_ORBIT})` }}>
-        <div className="press-inner page-frame"><div className="section-heading press-heading"><span className="section-index">[01]</span><h2>PRESS <strong>F</strong> TO PAY RESPECTS</h2><span className="section-rule" /></div><p className="press-copy">For the bags we lost. For the bags we build. For the ones still holding.</p><div className="press-stage">{falling.map((id, index) => <span className={`falling-f falling-${index + 1}`} key={id}>F</span>)}<button className="press-button" onClick={pressF} aria-label="Press F to pay respects">F</button></div><p className="counter"><span>F's Pressed:</span> {formattedCount}</p><p className="counter-note">local_storage // persistence enabled</p></div>
+        <div className="press-inner page-frame"><div className="section-heading press-heading"><span className="section-index">[01]</span><h2>PRESS <strong>F</strong> TO PAY RESPECTS</h2><span className="section-rule" /></div><p className="press-copy">For the bags we lost. For the bags we build. For the ones still holding.</p><div className="press-stage">{falling.map((id, index) => <span className={`falling-f falling-${index + 1}`} key={id}>F</span>)}<button className="press-button" onClick={pressF} aria-label="Press F to pay respects">F</button></div><div className="press-score-row"><p className="counter"><span>F's Pressed:</span> {formattedCount}</p><button className="share-x-button" type="button" onClick={shareOnX}>Share on X <span>↗</span></button></div><p className="counter-note">local_storage // persistence enabled</p></div>
       </section>
 
       <section className="values-section page-frame" id="what-is-fff"><div className="section-heading"><span className="section-index">[02]</span><h2>WHAT IS <strong>FFF</strong></h2><span className="section-rule" /></div><p className="section-intro">Three letters. One operating system. No exit strategy.</p><div className="value-grid">{cards.map((card) => <article className="value-card" key={card.code}><div className="card-top"><span>{card.code} //</span><span>{card.accent}</span></div><div className="card-glyph">F</div><h3>{card.title}</h3><p>{card.body}</p><span className="card-arrow">↘</span></article>)}</div></section>

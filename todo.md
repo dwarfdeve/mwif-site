@@ -9,3 +9,9 @@
 - [x] Stack FFF cards on mobile with 20px side padding and larger touch targets/type.
 - [x] Update footer copy and links to the requested Launching Soon / FFF Gang content.
 - [x] Verify build, desktop/mobile rendering, localStorage persistence, and interactions.
+
+## Share on X update
+
+- [x] Add a Share on X button beside the Press F score.
+- [x] Generate a URL-encoded X intent containing the current F's Pressed score.
+- [x] Verify the button styling, responsive layout, and production build.
