@@ -114,3 +114,11 @@
 - [x] Exclude secrets, wallet credentials, and private backend configuration.
 - [x] Keep transaction and launch automation backend work separate from this public frontend release.
 - [x] Complete the push after GitHub integration is enabled.
+
+## Static GitHub Pages cleanup
+
+- [ ] Remove Phantom and Solflare UI, provider detection, connect/disconnect handlers, and NFT wallet messaging.
+- [ ] Remove `nft-config.js` and the hidden NFT placeholder asset manifest/docs from the public project source.
+- [ ] Keep the visible Press F, sound, share, store, and static media features intact.
+- [ ] Add a GitHub Pages-compatible static build workflow and repository instructions.
+- [ ] Verify the static build, public repository contents, and Pages configuration.
