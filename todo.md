@@ -173,3 +173,9 @@
 - [x] Inspect live HTML, bundle paths, and browser errors for the blank GitHub Pages page.
 - [x] Repair the root static artifact or base-path mismatch and repush the fix.
 - [x] Verify the public GitHub Pages URL renders successfully after deployment.
+
+## STORE top-menu enhancement
+
+- [ ] Inspect the current header and STORE anchor behavior.
+- [ ] Add a prominent special STORE menu item with reliable section scrolling.
+- [ ] Verify desktop/mobile navigation and save a checkpoint.
