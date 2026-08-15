@@ -155,3 +155,9 @@
 - [ ] Confirm the repository tree contains the expected static index file and inspect Pages source configuration.
 - [ ] Move or mirror the static artifact into the reliable root publishing location with a root `index.html`.
 - [ ] Verify the public root URL no longer returns the GitHub Pages 404.
+
+## Interaction polish pass
+
+- [x] Add smooth scroll-reveal animations to major landing-page sections.
+- [x] Add refined hover and press feedback to primary buttons while respecting reduced-motion preferences.
+- [x] Verify desktop/mobile rendering and save a checkpoint for the interaction pass.

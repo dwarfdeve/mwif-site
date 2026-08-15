@@ -72,6 +72,26 @@ export default function Home() {
     return () => window.clearTimeout(timeout);
   }, [typedText]);
 
+  useEffect(() => {
+    const revealItems = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
+    if (!("IntersectionObserver" in window)) {
+      revealItems.forEach((item) => item.classList.add("is-visible"));
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14, rootMargin: "0px 0px -36px" });
+
+    revealItems.forEach((item) => observer.observe(item));
+    return () => observer.disconnect();
+  }, []);
+
   const formattedCount = useMemo(() => pressed.toLocaleString("en-US"), [pressed]);
   const badge = pressed >= 1000 ? "1000 F Club" : pressed >= 500 ? "500 F Club" : pressed >= 100 ? "100 F Club" : null;
 
@@ -195,7 +215,7 @@ export default function Home() {
         <nav className="topbar-nav" aria-label="Primary"><a href="#store">STORE</a></nav><span className="system-status"><i /> SYSTEM ONLINE</span>
       </header>
 
-      <section id="top" className="hero page-frame">
+      <section id="top" className="hero page-frame scroll-reveal" data-reveal>
         <div className="eyebrow"><span>BOOT_SEQUENCE</span><span>v.2025.04</span></div>
         <div className="hero-grid">
           <div className="hero-copy"><p className="hero-kicker">// A MEME COIN FOR THE F-FORTIFIED</p><h1>MAN WITH <em>F</em></h1><p className="hero-subcopy">No roadmap. No promises. Just conviction, questionable decisions, and a community that knows when to press F.</p></div>
@@ -205,19 +225,19 @@ export default function Home() {
           <div className="terminal-bar"><span className="terminal-dots"><i /><i /><i /></span><span>/usr/bin/man_with_f</span><span className="terminal-live">LIVE</span></div>
           <div className="terminal-body" aria-live="polite">{terminalLines.map((line, index) => <div className={`terminal-line ${index === terminalLines.length - 1 && typingComplete ? "terminal-prompt" : ""}`} key={`${line}-${index}`}><span className="prompt-mark">{index === 0 ? ">" : "+"}</span>{line}</div>)}{!typingComplete && <span className="typing-caret" aria-label="typing" />}</div>
         </div>
-        <div className="hero-actions"><a href="#" className="terminal-button filled buy-button">Buy $MWIF <span>↗</span></a><a href="#" className="terminal-button">View Chart <span>↗</span></a></div>
+        <div className="hero-actions"><a href="#" className="terminal-button filled buy-button" data-button>Buy $MWIF <span>↗</span></a><a href="#" className="terminal-button" data-button>View Chart <span>↗</span></a></div>
         <div className="scroll-cue"><span className="scroll-line" /> SCROLL TO EXECUTE</div>
       </section>
 
-      <section className="press-section" id="press-f" style={{ backgroundImage: `linear-gradient(rgba(10,10,10,.7), rgba(10,10,10,.9)), url(${PURPLE_ORBIT})` }}>
-        <div className="press-inner page-frame"><div className="section-heading press-heading"><span className="section-index">[01]</span><h2>PRESS <strong>F</strong> TO PAY RESPECTS</h2><span className="section-rule" /></div><p className="press-copy">For the bags we lost. For the bags we build. For the ones still holding.</p><div className="press-stage">{falling.map((id, index) => <span className={`falling-f falling-${index + 1}`} key={id}>F</span>)}<button className="press-button" onClick={pressF} aria-label="Press F to pay respects">F</button></div><div className="press-score-row"><div className="press-score"><p className="counter"><span>F's Pressed:</span> {formattedCount}</p>{badge && <span className="f-badge">{badge}</span>}</div><button className="share-x-button" type="button" onClick={shareMyScore}>Share My Score <span>↗</span></button></div><p className="counter-note">local_storage // persistence enabled</p>{generatedImage && <div className="share-image-panel"><div className="share-image-preview"><img src={generatedImage} alt={`Generated $MWIF share image showing ${formattedCount} F's Pressed`} /></div><div className="share-image-actions"><span>share_image // generated on tap</span><div><a className="share-image-button" href={generatedImage} download={generatedFile?.name || "mwif-f-share.png"}>Download PNG ↘</a><button className="share-image-button" type="button" onClick={shareGeneratedImage}>Share Image ↗</button></div></div></div>}</div>
+      <section className="press-section scroll-reveal" id="press-f" data-reveal style={{ backgroundImage: `linear-gradient(rgba(10,10,10,.7), rgba(10,10,10,.9)), url(${PURPLE_ORBIT})` }}>
+        <div className="press-inner page-frame"><div className="section-heading press-heading"><span className="section-index">[01]</span><h2>PRESS <strong>F</strong> TO PAY RESPECTS</h2><span className="section-rule" /></div><p className="press-copy">For the bags we lost. For the bags we build. For the ones still holding.</p><div className="press-stage">{falling.map((id, index) => <span className={`falling-f falling-${index + 1}`} key={id}>F</span>)}<button className="press-button" data-button onClick={pressF} aria-label="Press F to pay respects">F</button></div><div className="press-score-row"><div className="press-score"><p className="counter"><span>F's Pressed:</span> {formattedCount}</p>{badge && <span className="f-badge">{badge}</span>}</div><button className="share-x-button" data-button type="button" onClick={shareMyScore}>Share My Score <span>↗</span></button></div><p className="counter-note">local_storage // persistence enabled</p>{generatedImage && <div className="share-image-panel"><div className="share-image-preview"><img src={generatedImage} alt={`Generated $MWIF share image showing ${formattedCount} F's Pressed`} /></div><div className="share-image-actions"><span>share_image // generated on tap</span><div><a className="share-image-button" href={generatedImage} download={generatedFile?.name || "mwif-f-share.png"}>Download PNG ↘</a><button className="share-image-button" type="button" onClick={shareGeneratedImage}>Share Image ↗</button></div></div></div>}</div>
       </section>
 
-      <section className="values-section page-frame" id="what-is-fff"><div className="section-heading"><span className="section-index">[02]</span><h2>WHAT IS <strong>FFF</strong></h2><span className="section-rule" /></div><p className="section-intro">Three letters. One operating system. No exit strategy.</p><div className="value-grid">{cards.map((card) => <article className="value-card" key={card.code}><div className="card-top"><span>{card.code} //</span><span>{card.accent}</span></div><div className="card-glyph">F</div><h3>{card.title}</h3><p>{card.body}</p><span className="card-arrow">↘</span></article>)}</div></section>
+      <section className="values-section page-frame scroll-reveal" id="what-is-fff" data-reveal><div className="section-heading"><span className="section-index">[02]</span><h2>WHAT IS <strong>FFF</strong></h2><span className="section-rule" /></div><p className="section-intro">Three letters. One operating system. No exit strategy.</p><div className="value-grid">{cards.map((card) => <article className="value-card" key={card.code}><div className="card-top"><span>{card.code} //</span><span>{card.accent}</span></div><div className="card-glyph">F</div><h3>{card.title}</h3><p>{card.body}</p><span className="card-arrow">↘</span></article>)}</div></section>
 
-      <section className="signal-section page-frame" style={{ backgroundImage: `url(${GREEN_NOISE})` }}><div className="signal-line"><span>COMMUNITY_SIGNAL</span><span>// FFF ONLY</span></div><div className="signal-grid"><h2>STAY<br /><span>FORTIFIED.</span></h2><p>Some coins have utility. We have a story, a terminal, and an unreasonable amount of F.</p></div></section>
+      <section className="signal-section page-frame scroll-reveal" data-reveal style={{ backgroundImage: `url(${GREEN_NOISE})` }}><div className="signal-line"><span>COMMUNITY_SIGNAL</span><span>// FFF ONLY</span></div><div className="signal-grid"><h2>STAY<br /><span>FORTIFIED.</span></h2><p>Some coins have utility. We have a story, a terminal, and an unreasonable amount of F.</p></div></section>
 
-      <section className="media-section page-frame" id="store"><div className="section-heading"><span className="section-index">[03]</span><h2><strong>STORE</strong> // CLASSIC_DROP</h2><span className="section-rule" /></div><p className="section-intro">145 static F assets for the group chat, the timeline, and the next questionable decision. Choose a category, download, transfer, deploy.</p><div className="store-toolbar" role="tablist" aria-label="Store asset categories">{(["ALL", "MEME", "STICKER", "GIF"] as const).map((filter) => <button key={filter} type="button" className={`store-filter ${storeFilter === filter ? "is-active" : ""}`} onClick={() => setStoreFilter(filter)} role="tab" aria-selected={storeFilter === filter}>{filter} <span>{filter === "ALL" ? classicStoreAssets.length : classicStoreAssets.filter((asset) => asset.category === filter).length}</span></button>)}</div><div className="media-grid store-grid">{visibleStoreAssets.map((asset) => <article className="media-card" key={asset.filename}><div className="media-preview"><img src={asset.url} alt={asset.label} loading="lazy" /></div><div className="media-meta"><span className="media-kind">{asset.category}</span><span>STATIC</span></div><h3>{asset.label}</h3><div className="media-actions"><a href={asset.url} download={asset.filename} target="_blank" rel="noreferrer">DOWNLOAD ↘</a><a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`Deploying ${asset.label} for $MWIF. FFF gang only.`)}`} target="_blank" rel="noreferrer">POST ON X ↗</a></div></article>)}</div></section>
+      <section className="media-section page-frame scroll-reveal" id="store" data-reveal><div className="section-heading"><span className="section-index">[03]</span><h2><strong>STORE</strong> // CLASSIC_DROP</h2><span className="section-rule" /></div><p className="section-intro">145 static F assets for the group chat, the timeline, and the next questionable decision. Choose a category, download, transfer, deploy.</p><div className="store-toolbar" role="tablist" aria-label="Store asset categories">{(["ALL", "MEME", "STICKER", "GIF"] as const).map((filter) => <button key={filter} type="button" className={`store-filter ${storeFilter === filter ? "is-active" : ""}`} onClick={() => setStoreFilter(filter)} role="tab" aria-selected={storeFilter === filter}>{filter} <span>{filter === "ALL" ? classicStoreAssets.length : classicStoreAssets.filter((asset) => asset.category === filter).length}</span></button>)}</div><div className="media-grid store-grid">{visibleStoreAssets.map((asset) => <article className="media-card" key={asset.filename}><div className="media-preview"><img src={asset.url} alt={asset.label} loading="lazy" /></div><div className="media-meta"><span className="media-kind">{asset.category}</span><span>STATIC</span></div><h3>{asset.label}</h3><div className="media-actions"><a href={asset.url} download={asset.filename} target="_blank" rel="noreferrer">DOWNLOAD ↘</a><a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`Deploying ${asset.label} for $MWIF. FFF gang only.`)}`} target="_blank" rel="noreferrer">POST ON X ↗</a></div></article>)}</div></section>
 
       <footer className="footer page-frame"><div className="footer-top"><div className="contract-label">Contract: <strong>TBA</strong> <span>|</span> Launching Soon</div><div className="footer-links"><a href="https://x.com/iam_mwif?s=11" target="_blank" rel="noreferrer">[ X ]</a><a href="https://t.me/mwifportal" target="_blank" rel="noreferrer">[ Telegram ]</a><a href="#">[ GitHub ]</a><a href="#">[ Jupiter ]</a></div></div><div className="footer-gang">Join the FFF Gang</div><div className="footer-bottom"><span>$MWIF is a meme coin. Not financial advice. FFF gang only.</span><span>© 2025 MWIF / END_OF_FILE</span></div></footer>
       <div className="marquee" aria-label="FFF"><div className="marquee-track">FFF FFF FFF FFF&nbsp;&nbsp;&nbsp;FFF FFF FFF FFF&nbsp;&nbsp;&nbsp;</div></div>
