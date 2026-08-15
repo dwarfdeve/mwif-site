@@ -167,3 +167,9 @@
 - [x] Trace all generated-post and download paths to identify the multiple-format behavior.
 - [x] Standardize the downloadable F-post to one fixed canvas format and design.
 - [x] Verify the generated preview, download filename, and share flow on desktop and mobile.
+
+## GitHub Pages blank-page repair
+
+- [ ] Inspect live HTML, bundle paths, and browser errors for the blank GitHub Pages page.
+- [ ] Repair the root static artifact or base-path mismatch and repush the fix.
+- [ ] Verify the public GitHub Pages URL renders successfully after deployment.
