@@ -1,5 +1,5 @@
 /* Phosphor Terminal style: neo-brutalist terminal UI, black void, phosphor green signal, purple interrupt moments, visible scanlines, deliberate command-line rhythm. */
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 const LOGO_URL = "/manus-storage/logo_2005e11e.png";
 const F_MARK_URL = "/manus-storage/mwif-f-mark_f820e130.png";
@@ -15,6 +15,15 @@ const terminalText = [
   "2025: Building $MWIF",
   "Press F to join_",
 ].join("\n");
+
+const memePostTemplates = [
+  (count: string) => `I pressed F ${count} times. The market said stop. I said FFF. $MWIF #Solana`,
+  (count: string) => `POV: you pressed F ${count} times and still have conviction. FFF gang only. $MWIF`,
+  (count: string) => `My portfolio? Unclear. My F count? ${count}. My conviction? Unfortunately strong. $MWIF`,
+  (count: string) => `They told me to touch grass. I pressed F ${count} times instead. $MWIF`,
+  (count: string) => `F = Faith. F = Fortitude. F = Fuck-it. Current tally: ${count}. $MWIF #Solana`,
+  (count: string) => `I did not come here to be early. I came here to press F ${count} times. $MWIF`,
+];
 
 const cards = [
   { code: "01", title: "F = Faith", body: "Hold when everyone sells", accent: "0.42s" },
@@ -37,6 +46,7 @@ export default function Home() {
     return Number(window.localStorage.getItem("mwif-f-count") || 0);
   });
   const [falling, setFalling] = useState<number[]>([]);
+  const lastShareIndex = useRef(-1);
 
   useEffect(() => {
     if (typedText.length >= terminalText.length) return;
@@ -47,8 +57,12 @@ export default function Home() {
   const formattedCount = useMemo(() => pressed.toLocaleString("en-US"), [pressed]);
 
   function shareOnX() {
-    const suffix = pressed === 1 ? "time" : "times";
-    const tweet = `I pressed F ${formattedCount} ${suffix} on $MWIF. Press F to pay respects. FFF gang only.`;
+    let nextIndex = Math.floor(Math.random() * memePostTemplates.length);
+    if (memePostTemplates.length > 1 && nextIndex === lastShareIndex.current) {
+      nextIndex = (nextIndex + 1) % memePostTemplates.length;
+    }
+    lastShareIndex.current = nextIndex;
+    const tweet = memePostTemplates[nextIndex](formattedCount);
     const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweet)}`;
     window.open(shareUrl, "_blank", "noopener,noreferrer");
   }
@@ -89,7 +103,7 @@ export default function Home() {
       </section>
 
       <section className="press-section" id="press-f" style={{ backgroundImage: `linear-gradient(rgba(10,10,10,.7), rgba(10,10,10,.9)), url(${PURPLE_ORBIT})` }}>
-        <div className="press-inner page-frame"><div className="section-heading press-heading"><span className="section-index">[01]</span><h2>PRESS <strong>F</strong> TO PAY RESPECTS</h2><span className="section-rule" /></div><p className="press-copy">For the bags we lost. For the bags we build. For the ones still holding.</p><div className="press-stage">{falling.map((id, index) => <span className={`falling-f falling-${index + 1}`} key={id}>F</span>)}<button className="press-button" onClick={pressF} aria-label="Press F to pay respects">F</button></div><div className="press-score-row"><p className="counter"><span>F's Pressed:</span> {formattedCount}</p><button className="share-x-button" type="button" onClick={shareOnX}>Share on X <span>↗</span></button></div><p className="counter-note">local_storage // persistence enabled</p></div>
+        <div className="press-inner page-frame"><div className="section-heading press-heading"><span className="section-index">[01]</span><h2>PRESS <strong>F</strong> TO PAY RESPECTS</h2><span className="section-rule" /></div><p className="press-copy">For the bags we lost. For the bags we build. For the ones still holding.</p><div className="press-stage">{falling.map((id, index) => <span className={`falling-f falling-${index + 1}`} key={id}>F</span>)}<button className="press-button" onClick={pressF} aria-label="Press F to pay respects">F</button></div><div className="press-score-row"><p className="counter"><span>F's Pressed:</span> {formattedCount}</p><button className="share-x-button" type="button" onClick={shareOnX}>Share a meme on X <span>↗</span></button></div><p className="counter-note">local_storage // persistence enabled</p></div>
       </section>
 
       <section className="values-section page-frame" id="what-is-fff"><div className="section-heading"><span className="section-index">[02]</span><h2>WHAT IS <strong>FFF</strong></h2><span className="section-rule" /></div><p className="section-intro">Three letters. One operating system. No exit strategy.</p><div className="value-grid">{cards.map((card) => <article className="value-card" key={card.code}><div className="card-top"><span>{card.code} //</span><span>{card.accent}</span></div><div className="card-glyph">F</div><h3>{card.title}</h3><p>{card.body}</p><span className="card-arrow">↘</span></article>)}</div></section>

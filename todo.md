@@ -21,3 +21,10 @@
 - [x] Replace the placeholder X link with https://x.com/iam_mwif?s=11.
 - [x] Replace the placeholder Telegram link with https://t.me/mwifportal.
 - [x] Verify the updated links and production build.
+
+## Meme-share upgrade
+
+- [x] Add multiple degen-style X post templates that include the live F's Pressed score.
+- [x] Randomize or rotate the generated post on each Share on X click.
+- [x] Keep posts URL-encoded and open them in the X composer for user review.
+- [x] Verify the new share flow and production build.
