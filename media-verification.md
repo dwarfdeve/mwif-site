@@ -1,0 +1,3 @@
+# Static Media Gallery Verification
+
+Desktop and mobile screenshot checks confirm that the new `STATIC MEDIA_DROP` section renders in the existing black terminal style, uses responsive card grids, keeps GIF previews visible, and exposes download / X-share controls on each asset card. The mobile layout stacks the media cards into two columns with readable labels and touch-sized links. The AI-generated photo and sticker slots were still showing temporary generation placeholders during capture and will resolve automatically at their reserved project URLs; the static GIF assets were rendering successfully.

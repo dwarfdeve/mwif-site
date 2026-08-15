@@ -28,3 +28,17 @@
 - [x] Randomize or rotate the generated post on each Share on X click.
 - [x] Keep posts URL-encoded and open them in the X composer for user review.
 - [x] Verify the new share flow and production build.
+
+## Media lab upgrade
+
+- [x] Generate branded $MWIF meme photos for social sharing.
+- [x] Generate reusable $MWIF sticker assets for Telegram and X.
+- [x] Replace the runtime creator with a static gallery of pre-made sticker/GIF assets and direct download/share actions.
+- [x] Add the media lab section to the existing terminal site and keep it responsive.
+- [x] Verify media previews, download behavior, share links, and production build.
+
+## Static-only media clarification
+
+- [x] Remove runtime generator expectations from the media-lab plan.
+- [x] Prepare only transferable static photos, sticker PNGs, and GIF files.
+- [x] Build a static gallery with direct download links and no external runtime dependencies.

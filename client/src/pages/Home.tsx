@@ -7,6 +7,16 @@ const TERMINAL_TEXTURE = "/manus-storage/mwif-terminal-grid_e1e029b5.png";
 const PURPLE_ORBIT = "/manus-storage/mwif-purple-orbit_b50a1426.png";
 const GREEN_NOISE = "/manus-storage/mwif-green-noise_962fb930.png";
 
+const mediaAssets = [
+  { kind: "PHOTO", name: "late_night_conviction.png", format: "X / TELEGRAM", url: "/manus-storage/mwif-meme-photo-01_37b9c8a3.png" },
+  { kind: "PHOTO", name: "build_through_it.png", format: "X / TELEGRAM", url: "/manus-storage/mwif-meme-photo-02_f790df34.png" },
+  { kind: "STICKER", name: "press_the_fist.png", format: "TELEGRAM / X", url: "/manus-storage/mwif-sticker-fist_3043fa24.png" },
+  { kind: "STICKER", name: "terminal_cope.png", format: "TELEGRAM / X", url: "/manus-storage/mwif-sticker-cope_87b52cad.png" },
+  { kind: "STICKER", name: "fff_anthem.png", format: "TELEGRAM / X", url: "/manus-storage/mwif-sticker-fff_654b1b38.png" },
+  { kind: "GIF", name: "press_f_reaction.gif", format: "TELEGRAM / X", url: "/manus-storage/mwif-press-f_fa946905.gif" },
+  { kind: "GIF", name: "fff_chant.gif", format: "TELEGRAM / X", url: "/manus-storage/mwif-fff-chant_65b5bcc1.gif" },
+];
+
 const terminalText = [
   "man_with_f.exe started...",
   "2021: Had 100k",
@@ -109,6 +119,8 @@ export default function Home() {
       <section className="values-section page-frame" id="what-is-fff"><div className="section-heading"><span className="section-index">[02]</span><h2>WHAT IS <strong>FFF</strong></h2><span className="section-rule" /></div><p className="section-intro">Three letters. One operating system. No exit strategy.</p><div className="value-grid">{cards.map((card) => <article className="value-card" key={card.code}><div className="card-top"><span>{card.code} //</span><span>{card.accent}</span></div><div className="card-glyph">F</div><h3>{card.title}</h3><p>{card.body}</p><span className="card-arrow">↘</span></article>)}</div></section>
 
       <section className="signal-section page-frame" style={{ backgroundImage: `url(${GREEN_NOISE})` }}><div className="signal-line"><span>COMMUNITY_SIGNAL</span><span>// FFF ONLY</span></div><div className="signal-grid"><h2>STAY<br /><span>FORTIFIED.</span></h2><p>Some coins have utility. We have a story, a terminal, and an unreasonable amount of F.</p></div></section>
+
+      <section className="media-section page-frame" id="media-pack"><div className="section-heading"><span className="section-index">[03]</span><h2>STATIC <strong>MEDIA_DROP</strong></h2><span className="section-rule" /></div><p className="section-intro">Pre-made assets for the group chat, the timeline, and the next questionable decision. Download, transfer, deploy.</p><div className="media-grid">{mediaAssets.map((asset) => <article className="media-card" key={asset.name}><div className="media-preview"><img src={asset.url} alt={asset.name.replaceAll("_", " ")} loading="lazy" /></div><div className="media-meta"><span className="media-kind">{asset.kind}</span><span>{asset.format}</span></div><h3>{asset.name}</h3><div className="media-actions"><a href={asset.url} download target="_blank" rel="noreferrer">DOWNLOAD ↘</a><a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`Deploying ${asset.name} for $MWIF. FFF gang only.`)}`} target="_blank" rel="noreferrer">POST ON X ↗</a></div></article>)}</div></section>
 
       <footer className="footer page-frame"><div className="footer-top"><div className="contract-label">Contract: <strong>TBA</strong> <span>|</span> Launching Soon</div><div className="footer-links"><a href="https://x.com/iam_mwif?s=11" target="_blank" rel="noreferrer">[ X ]</a><a href="https://t.me/mwifportal" target="_blank" rel="noreferrer">[ Telegram ]</a><a href="#">[ GitHub ]</a><a href="#">[ Jupiter ]</a></div></div><div className="footer-gang">Join the FFF Gang</div><div className="footer-bottom"><span>$MWIF is a meme coin. Not financial advice.</span><span>© 2025 MWIF / END_OF_FILE</span></div></footer>
       <div className="marquee" aria-label="FFF"><div className="marquee-track">FFF FFF FFF FFF FFF&nbsp;&nbsp;&nbsp;FFF FFF FFF FFF FFF&nbsp;&nbsp;&nbsp;</div></div>
