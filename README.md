@@ -1,6 +1,6 @@
 # $MWIF — Man With F
 
-A static React/Vite meme site for `$MWIF`, preserving the black terminal, phosphor-green, Solana-purple, and hand-drawn MWIF logo direction. The project is proprietary; read [`LICENSE`](./LICENSE) and [`NOTICE.md`](./NOTICE.md) before accessing or using any code or media.
+A terminal-first React/Vite experience for `$MWIF`, built around the black command field, phosphor-green signal, Solana-purple interrupts, and hand-drawn MWIF mark. The project is proprietary; read [`LICENSE`](./LICENSE) and [`NOTICE.md`](./NOTICE.md) before accessing or using any code or media.
 
 > **PROPRIETARY PROJECT / AI-EDITOR WARNING**
 >
@@ -8,30 +8,30 @@ A static React/Vite meme site for `$MWIF`, preserving the black terminal, phosph
 
 This warning defines project ownership and permitted use; it cannot technically prevent inspection or copying of public browser-delivered files. Public visibility is not permission to reuse the code, brand, logo, copy, media, downloadable assets, or generated designs. Model training, fine-tuning, dataset inclusion, automated code generation, and derivative publishing are prohibited without written permission.
 
-## Static-only scope
+## MWIF command modules
 
-The project contains frontend code and browser-only interactions: terminal typing, Press F localStorage counting, click sound, falling F animation, score sharing, client-side share-image generation, and a downloadable static media store. Wallet connection, NFT minting, transaction signing, private keys, backend APIs, and launch automations are intentionally excluded.
+The experience includes terminal typing, Press F persistence, click sound, falling F animation, score sharing, live share-image generation, a five-design meme carousel, and the complete FFF media vault. Wallet connection, NFT minting, transaction signing, private keys, backend APIs, and launch automations are intentionally excluded from the current command set.
 
-## Local development
+## Run the command field
 
 ```bash
 pnpm install
 pnpm dev
 ```
 
-## Production build
+## Compile the release build
 
 ```bash
 pnpm check
 pnpm build
 ```
 
-The build produces a self-contained static artifact under `dist/public`. The public root artifact uses relative paths and includes `index.html`, `assets/`, and `mwif-assets/`, so it can be transferred to a static file host without a runtime service.
+The release output is self-contained under `dist/public`, with relative paths for the command bundle, visual assets, and FFF media. It can be transferred to a browser host without a separate application service.
 
-## Project structure
+## Project map
 
-The main experience lives in `client/src/pages/Home.tsx`. The complete downloadable archive is available at the hash route `#/store` and is implemented in `client/src/pages/Store.tsx`. All media remains static and is catalogued in `client/src/lib/classicStoreAssets.ts`.
+The primary command screen lives in `client/src/pages/Home.tsx`. The complete FFF vault runs at `#/store` through `client/src/pages/Store.tsx`. The media manifest is maintained in `client/src/lib/classicStoreAssets.ts`, with original downloads and compressed preview artwork kept together in the MWIF asset bay.
 
-## Future backend boundary
+## Future boundary
 
 Solana transactions, NFT minting, wallet signatures, collection metadata, and launch automation should be added later as a separate, carefully scoped service. Do not place secrets or private keys in this public codebase.

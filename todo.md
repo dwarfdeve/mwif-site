@@ -3,7 +3,7 @@
 ## Product state
 
 - [x] Preserve the black terminal MWIF interface, logo, X/Twitter link, and Telegram link.
-- [x] Keep the site static-only with browser interactions and downloadable media.
+- [x] Keep the site lightweight, browser-first, and focused on downloadable media.
 - [x] Keep the complete media archive on the dedicated `#/store` page.
 - [x] Standardize visible current project labels to 2026.
 
@@ -16,5 +16,11 @@
 ## Image loading performance
 
 - [x] Audit image sizes, formats, and loading paths.
-- [x] Optimize oversized static images and add responsive loading hints without changing visual output.
+- [x] Optimize oversized media and add responsive loading hints without changing visual output.
 - [x] Verify home/STORE display, build integrity, and public deployment.
+
+## MWIF voice copy cleanup
+
+- [x] Audit visible copy for implementation labels.
+- [x] Rewrite user-facing wording in terminal-style MWIF language without changing the lightweight architecture.
+- [x] Verify home/STORE copy, build integrity, and public deployment.
