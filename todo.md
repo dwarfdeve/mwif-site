@@ -24,3 +24,10 @@
 - [x] Audit visible copy for implementation labels.
 - [x] Rewrite user-facing wording in terminal-style MWIF language without changing the lightweight architecture.
 - [x] Verify home/STORE copy, build integrity, and public deployment.
+
+## Complete MWIF engagement upgrade
+
+- [x] Audit the existing home and STORE implementation against the attached eight-section specification.
+- [x] Add Oath identity, Global F counter, enhanced Press F behavior, Development Log, FFF Manifesto, Solana network panel, founder key sequence, and score sharing.
+- [x] Verify localStorage persistence, click sound fallback, responsive layout, and static asset paths.
+- [x] Build, push the complete release to GitHub, and save a checkpoint.

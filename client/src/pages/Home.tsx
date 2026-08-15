@@ -10,6 +10,7 @@ const PURPLE_ORBIT = storagePath("mwif-purple-orbit_b50a1426.webp");
 const GREEN_NOISE = storagePath("mwif-green-noise_962fb930.webp");
 const SHARE_IMAGE_SIZE = 1080;
 const SHARE_IMAGE_FILENAME = "mwif-f-share.png";
+// ASSET: place click.mp3 in /assets/click.mp3 for release builds.
 
 const mediaAssets = [
   { kind: "PHOTO", name: "late_night_conviction.png", format: "X / TELEGRAM", url: storagePath("mwif-meme-photo-01_37b9c8a3.png") },
@@ -53,6 +54,24 @@ const cards = [
   { code: "03", title: "F = Fuck-it", body: "YOLO one more time", accent: "1.00x" },
 ];
 
+// SECTION 5: COMMUNITY MANIFESTO
+const RESPECT_QUOTES = [
+  "FFF #001: Never selling", "FFF #042: Building in the bear", "FFF #128: Press F for freedom",
+  "FFF #256: Diamond hands only", "FFF #512: We build in silence", "FFF #1024: Red candles build character",
+  "FFF #2048: Community owned", "FFF #4096: Hold. Build. Press F.", "FFF #8192: Early is early",
+  "FFF #16384: This is the way", "FFF #32768: Solana never sleeps", "FFF #65536: FFF Gang 4 life",
+];
+
+// SECTION 4: DEVELOPMENT LOG
+const DEVELOPMENT_LOG = [
+  "[2025.04.20] v1.0 - Initial Launch",
+  "[2025.04.21] v2.0 - Interaction System",
+  "[2025.04.22] v3.0 - Performance Optimization",
+  "[2025.04.23] v4.0 - Identity + Engagement",
+];
+
+const SECRET_SEQUENCE = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a"];
+
 const matrixChars = Array.from({ length: 34 }, (_, index) => ({
   id: index,
   char: "F01"[index % 3],
@@ -65,8 +84,21 @@ export default function Home() {
   const [typedText, setTypedText] = useState("");
   const [pressed, setPressed] = useState(() => {
     if (typeof window === "undefined") return 0;
-    return Number(window.localStorage.getItem("mwif-f-count") || 0);
+    return Number(window.localStorage.getItem("fCount") || window.localStorage.getItem("mwif-f-count") || 0);
   });
+  const [globalF, setGlobalF] = useState(() => {
+    if (typeof window === "undefined") return 1247892;
+    const current = Number(window.localStorage.getItem("globalF") || 1247892);
+    const next = current + Math.floor(Math.random() * 3);
+    window.localStorage.setItem("globalF", String(next));
+    return next;
+  });
+  const [fffNumber, setFffNumber] = useState(() => {
+    if (typeof window === "undefined") return "";
+    return window.localStorage.getItem("fffNumber") || "";
+  });
+  const [manifestoQuotes] = useState(() => [...RESPECT_QUOTES].sort(() => Math.random() - 0.5).slice(0, 3));
+  const [founderMode, setFounderMode] = useState(false);
   const [falling, setFalling] = useState<number[]>([]);
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
   const [generatedFile, setGeneratedFile] = useState<File | null>(null);
@@ -74,12 +106,36 @@ export default function Home() {
 
   const lastShareIndex = useRef(-1);
   const generatedUrlRef = useRef<string | null>(null);
+  const secretProgress = useRef(0);
 
   useEffect(() => {
     if (typedText.length >= terminalText.length) return;
     const timeout = window.setTimeout(() => setTypedText(terminalText.slice(0, typedText.length + 1)), 34);
     return () => window.clearTimeout(timeout);
   }, [typedText]);
+
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      const expected = SECRET_SEQUENCE[secretProgress.current];
+      if (event.key === expected || event.key.toLowerCase() === expected?.toLowerCase()) {
+        secretProgress.current += 1;
+        if (secretProgress.current === SECRET_SEQUENCE.length) {
+          secretProgress.current = 0;
+          document.body.classList.add("founder-flash");
+          window.setTimeout(() => document.body.classList.remove("founder-flash"), 100);
+          setFounderMode(true);
+          window.setTimeout(() => setFounderMode(false), 3000);
+          const clickSound = new Audio(`${import.meta.env.BASE_URL.replace(/\/$/, "")}/assets/click.mp3`);
+          clickSound.volume = 0.22;
+          clickSound.play().catch(() => undefined);
+        }
+      } else {
+        secretProgress.current = event.key === SECRET_SEQUENCE[0] ? 1 : 0;
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
 
   useEffect(() => {
     const revealItems = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
@@ -104,9 +160,17 @@ export default function Home() {
   const formattedCount = useMemo(() => pressed.toLocaleString("en-US"), [pressed]);
   const badge = pressed >= 1000 ? "1000 F Club" : pressed >= 500 ? "500 F Club" : pressed >= 100 ? "100 F Club" : null;
 
+  function swearTheOath() {
+    if (fffNumber) return;
+    const next = String(Math.floor(1000 + Math.random() * 9000));
+    window.localStorage.setItem("fffNumber", next);
+    setFffNumber(next);
+  }
+
   function shareMyScore() {
     const siteUrl = `${window.location.origin}${window.location.pathname}`;
-    const shareText = `I pressed F ${pressed} times for $MWIF 🫡 ${siteUrl}`;
+    const identity = fffNumber || "0000";
+    const shareText = `I am FFF #${identity} and pressed F ${pressed} times for $MWIF 🫡 ${siteUrl}`;
     window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`, "_blank", "noopener,noreferrer");
   }
 
@@ -286,11 +350,15 @@ export default function Home() {
 
   function pressF() {
     const next = pressed + 1;
-    const clickSound = new Audio(storagePath("click_b18b5911.mp3"));
+    const nextGlobal = globalF + 1;
+    const clickSound = new Audio(`${import.meta.env.BASE_URL.replace(/\/$/, "")}/assets/click.mp3`);
     clickSound.volume = 0.22;
     clickSound.play().catch(() => undefined);
     setPressed(next);
+    setGlobalF(nextGlobal);
+    window.localStorage.setItem("fCount", String(next));
     window.localStorage.setItem("mwif-f-count", String(next));
+    window.localStorage.setItem("globalF", String(nextGlobal));
     createShareImage(next, activeMemeIndex);
     const burst = Array.from({ length: 5 }, (_, index) => Date.now() + index);
     setFalling(burst);
@@ -309,6 +377,7 @@ export default function Home() {
         <nav className="topbar-nav" aria-label="Primary"><a className="store-menu-link" href="#/store" aria-label="Open the MWIF FFF media vault"><span className="store-menu-signal" aria-hidden="true" /><span className="store-menu-label">STORE</span><strong>145 ASSETS</strong><span className="store-menu-arrow" aria-hidden="true">↘</span></a></nav><span className="system-status"><i /> SYSTEM ONLINE</span>
       </header>
 
+      {/* SECTION 0: HERO TERMINAL */}
       <section id="top" className="hero page-frame scroll-reveal" data-reveal>
         <div className="eyebrow"><span>BOOT_SEQUENCE</span><span>v.2026.01</span></div>
         <div className="hero-grid">
@@ -323,18 +392,35 @@ export default function Home() {
         <div className="scroll-cue"><span className="scroll-line" /> SCROLL TO EXECUTE</div>
       </section>
 
-      <section className="press-section scroll-reveal" id="press-f" data-reveal style={{ backgroundImage: `linear-gradient(rgba(10,10,10,.7), rgba(10,10,10,.9)), url(${PURPLE_ORBIT})` }}>
-        <div className="press-inner page-frame"><div className="section-heading press-heading"><span className="section-index">[01]</span><h2>PRESS <strong>F</strong> TO PAY RESPECTS</h2><span className="section-rule" /></div><p className="press-copy">For the bags we lost. For the bags we build. For the ones still holding.</p><div className="press-stage">{falling.map((id, index) => <span className={`falling-f falling-${index + 1}`} key={id}>F</span>)}<button className="press-button" data-button onClick={pressF} aria-label="Press F to pay respects">F</button></div><div className="press-score-row"><div className="press-score"><p className="counter"><span>F's Pressed:</span> {formattedCount}</p>{badge && <span className="f-badge">{badge}</span>}</div><button className="share-x-button" data-button type="button" onClick={shareMyScore}>Share My Score <span>↗</span></button></div><p className="counter-note">local_storage // persistence enabled // export_format: 1080x1080 PNG</p>{generatedImage && <div className="share-image-panel"><div className="share-carousel-head"><div><span className="share-image-kicker">MEME_GENERATOR // LIVE F COUNT</span><strong>{shareMemeTemplates[activeMemeIndex].label}</strong><small>{shareMemeTemplates[activeMemeIndex].caption}</small></div><div className="share-carousel-count">{activeMemeIndex + 1} / {shareMemeTemplates.length}</div></div><div className="share-image-preview"><img src={generatedImage} alt={`${shareMemeTemplates[activeMemeIndex].label} $MWIF meme showing ${formattedCount} F's Pressed`} /></div><div className="share-carousel-controls"><button className="carousel-arrow" type="button" onClick={() => selectMemeTemplate(activeMemeIndex - 1)} aria-label="Previous meme design">←</button><div className="meme-template-dots" role="tablist" aria-label="F counter meme designs">{shareMemeTemplates.map((meme, index) => <button key={meme.id} className={`meme-template-dot ${activeMemeIndex === index ? "is-active" : ""}`} type="button" role="tab" aria-selected={activeMemeIndex === index} aria-label={`Use ${meme.label} meme design`} onClick={() => selectMemeTemplate(index)}>{String(index + 1).padStart(2, "0")}</button>)}</div><button className="carousel-arrow" type="button" onClick={() => selectMemeTemplate(activeMemeIndex + 1)} aria-label="Next meme design">→</button></div><div className="share-image-actions"><span>single_format // 1080x1080 PNG</span><div><a className="share-image-button" href={generatedImage} download={generatedFile?.name || SHARE_IMAGE_FILENAME}>Download Meme PNG ↘</a><button className="share-image-button" type="button" onClick={shareGeneratedImage}>Share Meme Image ↗</button></div></div></div>}</div>
+      {/* SECTION 1: THE OATH - IDENTITY SYSTEM */}
+      <section className="oath-section page-frame scroll-reveal" data-reveal aria-labelledby="oath-heading">
+        <div className="section-heading"><span className="section-index">[OATH]</span><h2 id="oath-heading">THE <strong>OATH</strong></h2><span className="section-rule" /></div>
+        <div className="oath-panel"><div><p className="oath-kicker">IDENTITY_PROTOCOL // FFF ACCESS</p><p className="oath-welcome">{fffNumber ? `Welcome, FFF #${fffNumber}. Hold the line.` : "No identity loaded. Claim your place in the line."}</p></div><button className="terminal-button oath-button" type="button" onClick={swearTheOath} disabled={Boolean(fffNumber)} data-button>{fffNumber ? `YOU ARE FFF #${fffNumber}` : "SWEAR THE OATH"}</button></div>
       </section>
 
+      {/* SECTION 3: PRESS F CORE ENGAGEMENT */}
+      <section className="press-section scroll-reveal" id="press-f" data-reveal style={{ backgroundImage: `linear-gradient(rgba(10,10,10,.7), rgba(10,10,10,.9)), url(${PURPLE_ORBIT})` }}>
+        <div className="press-inner page-frame"><div className="section-heading press-heading"><span className="section-index">[01]</span><h2>PRESS <strong>F</strong> TO PAY RESPECTS</h2><span className="section-rule" /></div><p className="press-copy">For the bags we lost. For the bags we build. For the ones still holding.</p><div className="global-counter" aria-live="polite">Global F's Pressed: <strong>{globalF.toLocaleString("en-US")}</strong></div><div className="press-stage">{falling.map((id, index) => <span className={`falling-f falling-${index + 1}`} key={id}>F</span>)}<button className="press-button" data-button onClick={pressF} aria-label="Press F to pay respects">F</button></div><div className="press-score-row"><div className="press-score"><p className="counter"><span>F's Pressed:</span> {formattedCount}</p>{badge && <span className="f-badge">{badge}</span>}</div><button className="share-x-button" data-button type="button" onClick={shareMyScore}>Share My Score <span>↗</span></button></div><p className="counter-note">local_storage // persistence enabled // export_format: 1080x1080 PNG</p>{generatedImage && <div className="share-image-panel"><div className="share-carousel-head"><div><span className="share-image-kicker">MEME_GENERATOR // LIVE F COUNT</span><strong>{shareMemeTemplates[activeMemeIndex].label}</strong><small>{shareMemeTemplates[activeMemeIndex].caption}</small></div><div className="share-carousel-count">{activeMemeIndex + 1} / {shareMemeTemplates.length}</div></div><div className="share-image-preview"><img src={generatedImage} alt={`${shareMemeTemplates[activeMemeIndex].label} $MWIF meme showing ${formattedCount} F's Pressed`} /></div><div className="share-carousel-controls"><button className="carousel-arrow" type="button" onClick={() => selectMemeTemplate(activeMemeIndex - 1)} aria-label="Previous meme design">←</button><div className="meme-template-dots" role="tablist" aria-label="F counter meme designs">{shareMemeTemplates.map((meme, index) => <button key={meme.id} className={`meme-template-dot ${activeMemeIndex === index ? "is-active" : ""}`} type="button" role="tab" aria-selected={activeMemeIndex === index} aria-label={`Use ${meme.label} meme design`} onClick={() => selectMemeTemplate(index)}>{String(index + 1).padStart(2, "0")}</button>)}</div><button className="carousel-arrow" type="button" onClick={() => selectMemeTemplate(activeMemeIndex + 1)} aria-label="Next meme design">→</button></div><div className="share-image-actions"><span>single_format // 1080x1080 PNG</span><div><a className="share-image-button" href={generatedImage} download={generatedFile?.name || SHARE_IMAGE_FILENAME}>Download Meme PNG ↘</a><button className="share-image-button" type="button" onClick={shareGeneratedImage}>Share Meme Image ↗</button></div></div></div>}</div>
+      </section>
+
+      {/* SECTION 2: FFF VALUES */}
       <section className="values-section page-frame scroll-reveal" id="what-is-fff" data-reveal><div className="section-heading"><span className="section-index">[02]</span><h2>WHAT IS <strong>FFF</strong></h2><span className="section-rule" /></div><p className="section-intro">Three letters. One operating system. No exit strategy.</p><div className="value-grid">{cards.map((card) => <article className="value-card" key={card.code}><div className="card-top"><span>{card.code} //</span><span>{card.accent}</span></div><div className="card-glyph">F</div><h3>{card.title}</h3><p>{card.body}</p><span className="card-arrow">↘</span></article>)}</div></section>
 
+      {/* SECTION 6: COMMUNITY SIGNAL */}
       <section className="signal-section page-frame scroll-reveal" data-reveal style={{ backgroundImage: `url(${GREEN_NOISE})` }}><div className="signal-line"><span>COMMUNITY_SIGNAL</span><span>// FFF ONLY</span></div><div className="signal-grid"><h2>STAY<br /><span>FORTIFIED.</span></h2><p>Some coins have utility. We have a story, a terminal, and an unreasonable amount of F.</p></div></section>
 
+      {/* SECTION 9: MEDIA VAULT TEASER */}
       <section className="home-store-teaser page-frame scroll-reveal" data-reveal><div className="section-heading"><span className="section-index">[03]</span><h2><strong>STORE</strong> // CLASSIC_DROP</h2><span className="section-rule" /></div><div className="home-store-teaser-grid"><div><p className="section-intro">The full FFF drop is mounted in a dedicated vault: 105 memes, 20 stickers, and 20 GIFs for the timeline, group chat, and next questionable decision.</p><a className="terminal-button filled" href="#/store" data-button>OPEN FULL STORE <span>↗</span></a></div><div className="home-store-stats"><span><strong>105</strong> MEMES</span><span><strong>20</strong> STICKERS</span><span><strong>20</strong> GIFS</span><small>FFF_DROP // DOWNLOADABLE // FFF GANG</small></div></div></section>
 
-      <footer className="footer page-frame"><div className="footer-top"><div className="contract-label">Contract: <strong>TBA</strong> <span>|</span> Launching Soon</div><div className="footer-links"><a href="https://x.com/iam_mwif?s=11" target="_blank" rel="noreferrer">[ X ]</a><a href="https://t.me/mwifportal" target="_blank" rel="noreferrer">[ Telegram ]</a><a href="#">[ Jupiter ]</a></div></div><div className="footer-gang">Join the FFF Gang</div><div className="footer-bottom"><span>$MWIF is a meme coin. Not financial advice. FFF gang only.</span><span>© 2026 MWIF / END_OF_FILE</span></div></footer>
+      {/* SECTION 4: DEVELOPMENT LOG */}
+      <section className="development-section page-frame scroll-reveal" data-reveal aria-labelledby="development-heading"><div className="section-heading"><span className="section-index">[04]</span><h2 id="development-heading">DEVELOPMENT <strong>LOG</strong></h2><span className="section-rule" /></div><ul className="development-log">{/* ADD NEW ENTRIES HERE */}{DEVELOPMENT_LOG.map((entry) => <li key={entry}>{entry}</li>)}</ul></section>
+
+      {/* SECTION 5: COMMUNITY MANIFESTO */}
+      <section className="manifesto-section page-frame scroll-reveal" data-reveal aria-labelledby="manifesto-heading"><div className="section-heading"><span className="section-index">[05]</span><h2 id="manifesto-heading">THE FFF <strong>MANIFESTO</strong></h2><span className="section-rule" /></div><div className="manifesto-grid">{manifestoQuotes.map((quote) => <article className="manifesto-card" key={quote}><span className="manifesto-mark">F</span><p>{quote}</p></article>)}</div></section>
+
+      <footer className="footer page-frame"><div className="network-credibility" aria-label="Solana network credibility"><div className="solana-mark" aria-hidden="true"><svg viewBox="0 0 24 24" role="img"><path d="M4 6.2 6.2 4h13.6l-3.1 3.1H3.1L4 6.2Zm0 11.6L6.2 20h13.6l-3.1-3.1H3.1L4 17.8ZM3.1 10.1h13.6l3.1 3.1H6.2L3.1 10.1Z" fill="currentColor" /></svg></div><div><span>NETWORK: <strong>Solana</strong></span><span>STATUS: <strong>Pre-Launch</strong></span></div><div><span>MISSION: <strong>Hold. Build. Press F.</strong></span><span>COMMUNITY: <strong>FFF Gang</strong></span></div></div><div className="footer-top"><div className="contract-label">Contract: <strong>TBA</strong> <span>|</span> Launching Soon</div><div className="footer-links"><a href="https://x.com/iam_mwif?s=11" target="_blank" rel="noreferrer">[ X ]</a><a href="https://t.me/mwifportal" target="_blank" rel="noreferrer">[ Telegram ]</a><a href="#">[ Jupiter ]</a></div></div><div className="footer-gang">Join the FFF Gang</div><div className="footer-bottom"><span>$MWIF is a meme coin. Not financial advice. FFF gang only.</span><span>© 2026 MWIF / END_OF_FILE</span></div></footer>
       <div className="marquee" aria-label="FFF"><div className="marquee-track">FFF FFF FFF FFF&nbsp;&nbsp;&nbsp;FFF FFF FFF FFF&nbsp;&nbsp;&nbsp;</div></div>
+      {founderMode && <div className="founder-overlay" role="status" aria-live="assertive">ACCESS: FFF FOUNDER MODE</div>}
     </main>
   );
 }
