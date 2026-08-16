@@ -59,4 +59,6 @@
 - [x] Package the video files with an asset/rights note for upload.
 - [x] Add the 30-second fictional market-meme video with project sound to the website without a visible download control.
 - [x] Verify video playback behavior on desktop and mobile.
-- [ ] Build and push the website video integration to GitHub.
+- [x] Build and push the website video integration to GitHub.
+- [x] Replace the large local MP4 with the user-hosted YouTube embed so sound remains available without a site download control.
+- [x] Rebuild, verify the hosted embed, and push the replacement to GitHub.

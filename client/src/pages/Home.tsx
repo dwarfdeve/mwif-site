@@ -8,7 +8,6 @@ const F_MARK_URL = storagePath("mwif-f-mark_f820e130.webp");
 const TERMINAL_TEXTURE = storagePath("mwif-terminal-grid_e1e029b5.webp");
 const PURPLE_ORBIT = storagePath("mwif-purple-orbit_b50a1426.webp");
 const GREEN_NOISE = storagePath("mwif-green-noise_962fb930.webp");
-const MARKET_VIDEO_URL = storagePath("mwif-market-meme-30s.mp4");
 const SHARE_IMAGE_SIZE = 1080;
 const SHARE_IMAGE_FILENAME = "mwif-f-share.png";
 // ASSET: place click.mp3 in /assets/click.mp3 for release builds.
@@ -417,12 +416,9 @@ export default function Home() {
         <div className="video-terminal">
           <div className="terminal-bar"><span className="terminal-dots"><i /><i /><i /></span><span>/usr/bin/mwif_market_meme</span><span className="terminal-live">PLAYING</span></div>
           <div className="video-frame">
-            <video className="mwif-video" controls playsInline preload="metadata" controlsList="nodownload noplaybackrate" disablePictureInPicture poster={storagePath("preview-wallpaper.jpg")} aria-label="$MWIF fictional market meme video">
-              <source src={MARKET_VIDEO_URL} type="video/mp4" />
-              Your browser does not support the MWIF market meme feed.
-            </video>
+            <iframe className="mwif-video" src="https://www.youtube-nocookie.com/embed/UQ5WUrb-VQM?rel=0&modestbranding=1" title="$MWIF fictional market meme video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen />
           </div>
-          <div className="video-status"><span>MWIF // FICTIONAL EXCHANGE</span><span>30 SEC // FFF MARKET OPEN</span><span>DOWNLOAD_UI: DISABLED</span></div>
+          <div className="video-status"><span>MWIF // FICTIONAL EXCHANGE</span><span>30 SEC // FFF MARKET OPEN</span><span>SOUND: YOUTUBE_FEED</span></div>
         </div>
       </section>
 

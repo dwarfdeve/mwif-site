@@ -179,7 +179,7 @@ h1 em { color: var(--purple); font-style: normal; text-shadow: 4px 4px 0 rgba(15
 .video-section { padding: 92px 0 112px; border-top: 1px solid var(--line); }
 .video-terminal { margin-top: 28px; border: 1px solid var(--green); background: #0a0a0a; box-shadow: 0 0 34px rgba(0,255,148,.08), 8px 8px 0 rgba(153,69,255,.22); }
 .video-frame { position: relative; overflow: hidden; background: #050505; }
-.mwif-video { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: #050505; }
+.mwif-video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border: 0; background: #050505; }
 .mwif-video::-webkit-media-controls-download-button { display: none; }
 .mwif-video::-webkit-media-controls-enclosure { overflow: hidden; }
 .video-status { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding: 12px 15px; border-top: 1px solid rgba(0,255,148,.3); color: var(--muted); font-size: 9px; letter-spacing: .1em; }
