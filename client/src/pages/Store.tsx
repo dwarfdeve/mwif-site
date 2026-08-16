@@ -2,18 +2,26 @@
 import { useMemo, useState } from "react";
 import { classicStoreAssets } from "../lib/classicStoreAssets";
 
-const filters = ["ALL", "MEME", "STICKER", "GIF"] as const;
+const filters = ["ALL", "SIGNATURE", "MEME", "STICKER", "GIF"] as const;
 type StoreFilter = (typeof filters)[number];
-const previewUrl = (url: string) => url.replace(/\.png$/i, ".webp");
-const logoEffectUrl = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/mwif-assets/mwif-logo-effect.gif`;
+type StoreItem = { category: string; label: string; url: string; filename: string; preview?: string };
+const previewUrl = (item: StoreItem) => item.preview || item.url.replace(/\.png$/i, ".webp");
+const assetPath = (filename: string) => `${import.meta.env.BASE_URL.replace(/\/$/, "")}/mwif-assets/${filename}`;
+const logoEffectUrl = assetPath("mwif-logo-effect.gif");
+const signatureAssets: StoreItem[] = [
+  { category: "SIGNATURE", label: "MWIF Logo Effect // Animated GIF", url: logoEffectUrl, filename: "mwif-logo-effect.gif", preview: logoEffectUrl },
+  { category: "SIGNATURE", label: "MWIF Logo // Telegram Sticker", url: assetPath("mwif-logo-telegram-sticker.gif"), filename: "mwif-logo-telegram-sticker.gif", preview: assetPath("mwif-logo-telegram-sticker.gif") },
+  { category: "SIGNATURE", label: "MWIF Logo // Transparent Edit Pack", url: assetPath("mwif-logo-transparent.png"), filename: "mwif-logo-transparent.png", preview: assetPath("mwif-logo-transparent.png") },
+];
 
 export default function Store() {
   const [filter, setFilter] = useState<StoreFilter>("ALL");
-  const visibleAssets = useMemo(
-    () => filter === "ALL" ? classicStoreAssets : classicStoreAssets.filter((asset) => asset.category === filter),
-    [filter],
-  );
-  const countFor = (category: StoreFilter) => category === "ALL" ? classicStoreAssets.length : classicStoreAssets.filter((asset) => asset.category === category).length;
+  const visibleAssets = useMemo<StoreItem[]>(() => {
+    if (filter === "SIGNATURE") return signatureAssets;
+    if (filter === "ALL") return [...signatureAssets, ...classicStoreAssets];
+    return classicStoreAssets.filter((asset) => asset.category === filter);
+  }, [filter]);
+  const countFor = (category: StoreFilter) => category === "ALL" ? classicStoreAssets.length + signatureAssets.length : category === "SIGNATURE" ? signatureAssets.length : classicStoreAssets.filter((asset) => asset.category === category).length;
 
   return (
     <main className="site-shell store-page">
@@ -33,7 +41,7 @@ export default function Store() {
       <section className="store-inventory page-frame" aria-labelledby="inventory-heading">
         <div className="section-heading"><span className="section-index">[03]</span><h2 id="inventory-heading"><strong>MEDIA_INVENTORY</strong> // FULL_PAYLOAD</h2><span className="section-rule" /></div>
         <div className="store-inventory-bar"><p>{visibleAssets.length} assets armed // click a category to filter the vault</p><div className="store-toolbar store-page-toolbar" role="tablist" aria-label="Store asset categories">{filters.map((item) => <button key={item} type="button" className={`store-filter ${filter === item ? "is-active" : ""}`} onClick={() => setFilter(item)} role="tab" aria-selected={filter === item}>{item} <span>{countFor(item)}</span></button>)}</div></div>
-        <div className="media-grid store-grid store-page-grid">{visibleAssets.map((asset) => <article className="media-card" key={asset.filename}><div className="media-preview"><img src={previewUrl(asset.url)} alt={asset.label} loading="lazy" decoding="async" /></div><div className="media-meta"><span className="media-kind">{asset.category}</span><span>FFF DROP</span></div><h3>{asset.label}</h3><div className="media-actions"><a href={asset.url} download={asset.filename} target="_blank" rel="noreferrer">DOWNLOAD ↘</a><a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`Deploying ${asset.label} for $MWIF. FFF gang only.`)}`} target="_blank" rel="noreferrer">POST ON X ↗</a></div></article>)}</div>
+        <div className="media-grid store-grid store-page-grid">{visibleAssets.map((asset) => <article className="media-card" key={asset.filename}><div className="media-preview"><img src={previewUrl(asset)} alt={asset.label} loading={asset.category === "SIGNATURE" ? "eager" : "lazy"} decoding="async" /></div><div className="media-meta"><span className="media-kind">{asset.category}</span><span>FFF DROP</span></div><h3>{asset.label}</h3><div className="media-actions"><a href={asset.url} download={asset.filename} target="_blank" rel="noreferrer">DOWNLOAD ↘</a><a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`Deploying ${asset.label} for $MWIF. FFF gang only.`)}`} target="_blank" rel="noreferrer">POST ON X ↗</a></div></article>)}</div>
       </section>
 
       <footer className="footer page-frame store-page-footer"><div className="footer-top"><div className="contract-label">STORE // <strong>END_OF_DROP</strong></div><a className="store-home-link" href="#/">RETURN TO MAIN ↗</a></div><div className="footer-bottom"><span>FFF archive mounted // ready for deployment.</span><span>$MWIF // FFF GANG ONLY</span></div></footer>

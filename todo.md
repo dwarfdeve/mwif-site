@@ -37,3 +37,9 @@
 - [x] Inspect available MWIF logo assets and the dedicated STORE catalog integration.
 - [x] Add the effect logo as a clearly labeled downloadable STORE item without changing the front-page logo.
 - [x] Verify preview/download behavior, responsive layout, build, and GitHub deployment.
+
+## Signature logo asset suite
+
+- [x] Generate an animated Telegram-sized logo sticker and a transparent editing logo asset.
+- [x] Add all signature logo variants to STORE with dedicated filtering and download controls.
+- [x] Verify static paths, responsive display, build, and GitHub deployment.
