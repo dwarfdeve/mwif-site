@@ -43,3 +43,10 @@
 - [x] Generate an animated Telegram-sized logo sticker and a transparent editing logo asset.
 - [x] Add all signature logo variants to STORE with dedicated filtering and download controls.
 - [x] Verify static paths, responsive display, build, and GitHub deployment.
+
+## v6 signature assets and usage guide
+
+- [ ] Add Telegram-ready 512px WebP exports beside the existing animated GIF assets.
+- [ ] Generate real Press F, FFF badge, wallpaper, and ZIP pack assets from the attached specification.
+- [ ] Add the signature asset cards, usage guide, and requested footer copy without removing previous MWIF sections.
+- [ ] Test dimensions, downloads, ZIP extraction, mobile behavior, build integrity, and GitHub deployment.
