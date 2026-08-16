@@ -46,7 +46,7 @@
 
 ## v6 signature assets and usage guide
 
-- [ ] Add Telegram-ready 512px WebP exports beside the existing animated GIF assets.
-- [ ] Generate real Press F, FFF badge, wallpaper, and ZIP pack assets from the attached specification.
-- [ ] Add the signature asset cards, usage guide, and requested footer copy without removing previous MWIF sections.
-- [ ] Test dimensions, downloads, ZIP extraction, mobile behavior, build integrity, and GitHub deployment.
+- [x] Add Telegram-ready 512px WebP exports beside the existing animated GIF assets.
+- [x] Generate real Press F, FFF badge, wallpaper, and ZIP pack assets from the attached specification.
+- [x] Add the signature asset cards, usage guide, and requested footer copy without removing previous MWIF sections.
+- [x] Test dimensions, downloads, ZIP extraction, mobile behavior, build integrity, and GitHub deployment.
