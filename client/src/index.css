@@ -174,3 +174,21 @@ h1 em { color: var(--purple); font-style: normal; text-shadow: 4px 4px 0 rgba(15
 /* SECTION 9: SIGNATURE ASSETS — green command rails, purple interrupt details, and clear download actions. */
 .v6-assets { margin-top: 76px; margin-bottom: 76px; }.v6-assets-subtitle { margin: -8px 0 22px; color: rgba(255,255,255,.62); font-size: 12px; }.v6-assets-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }.v6-asset-card { border: 1px solid rgba(0,255,148,.42); background: rgba(10,10,10,.84); box-shadow: 7px 7px 0 rgba(153,69,255,.18); }.v6-asset-preview { aspect-ratio: 16 / 10; overflow: hidden; border-bottom: 1px solid rgba(153,69,255,.55); background: #0a0a0a; }.v6-asset-preview img { display: block; width: 100%; height: 100%; object-fit: cover; }.v6-asset-copy { padding: 18px; }.v6-asset-copy h3 { margin: 8px 0; color: #fff; font-size: 16px; }.v6-asset-copy p { min-height: 46px; margin: 0; color: rgba(255,255,255,.65); font-size: 11px; line-height: 1.7; }.v6-asset-downloads { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }.v6-asset-downloads a { border: 1px solid rgba(0,255,148,.6); padding: 8px 9px; color: var(--green); font-size: 9px; letter-spacing: .04em; text-decoration: none; }.v6-asset-downloads a:hover { background: var(--green); color: #0a0a0a; }.v6-zip-button { display: flex; width: fit-content; margin: 24px auto 0; }.usage-guide { margin-bottom: 78px; }.usage-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }.usage-grid article { border-left: 2px solid var(--green); padding: 14px 18px; background: rgba(0,255,148,.045); }.usage-grid span { color: var(--green); font-size: 10px; letter-spacing: .1em; }.usage-grid p { margin: 10px 0 0; color: rgba(255,255,255,.72); font-size: 11px; line-height: 1.8; }.usage-note { margin: 22px 0 0; color: var(--purple); font-size: 11px; text-align: center; }
 @media (max-width: 860px) { .v6-assets-grid, .usage-grid { grid-template-columns: 1fr; }.v6-asset-copy p { min-height: 0; }.v6-asset-downloads a { flex: 1 1 160px; text-align: center; } }
+
+/* MWIF video module: Phosphor Terminal treatment, fictional exchange energy, no download affordance. */
+.video-section { padding: 92px 0 112px; border-top: 1px solid var(--line); }
+.video-terminal { margin-top: 28px; border: 1px solid var(--green); background: #0a0a0a; box-shadow: 0 0 34px rgba(0,255,148,.08), 8px 8px 0 rgba(153,69,255,.22); }
+.video-frame { position: relative; overflow: hidden; background: #050505; }
+.mwif-video { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: #050505; }
+.mwif-video::-webkit-media-controls-download-button { display: none; }
+.mwif-video::-webkit-media-controls-enclosure { overflow: hidden; }
+.video-status { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding: 12px 15px; border-top: 1px solid rgba(0,255,148,.3); color: var(--muted); font-size: 9px; letter-spacing: .1em; }
+.video-status span:first-child { color: var(--green); }
+@media (max-width: 680px) {
+  .video-section { padding: 70px 0 88px; }
+  .video-status { display: grid; grid-template-columns: 1fr; gap: 7px; font-size: 8px; }
+  .mwif-video { aspect-ratio: 16 / 9; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mwif-video { scroll-behavior: auto; }
+}

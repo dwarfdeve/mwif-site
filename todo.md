@@ -50,3 +50,13 @@
 - [x] Generate real Press F, FFF badge, wallpaper, and ZIP pack assets from the attached specification.
 - [x] Add the signature asset cards, usage guide, and requested footer copy without removing previous MWIF sections.
 - [x] Test dimensions, downloads, ZIP extraction, mobile behavior, build integrity, and GitHub deployment.
+
+## YouTube video set
+
+- [x] Define landscape and vertical video cuts, reuse-safe photography, and available MWIF sound/logo assets.
+- [x] Prepare photography, project identity, sound, and creative direction for YouTube publishing.
+- [x] Generate and review the landscape and vertical video exports.
+- [x] Package the video files with an asset/rights note for upload.
+- [x] Add the 30-second fictional market-meme video with project sound to the website without a visible download control.
+- [x] Verify video playback behavior on desktop and mobile.
+- [ ] Build and push the website video integration to GitHub.

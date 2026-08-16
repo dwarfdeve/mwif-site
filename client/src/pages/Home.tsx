@@ -8,6 +8,7 @@ const F_MARK_URL = storagePath("mwif-f-mark_f820e130.webp");
 const TERMINAL_TEXTURE = storagePath("mwif-terminal-grid_e1e029b5.webp");
 const PURPLE_ORBIT = storagePath("mwif-purple-orbit_b50a1426.webp");
 const GREEN_NOISE = storagePath("mwif-green-noise_962fb930.webp");
+const MARKET_VIDEO_URL = storagePath("mwif-market-meme-30s.mp4");
 const SHARE_IMAGE_SIZE = 1080;
 const SHARE_IMAGE_FILENAME = "mwif-f-share.png";
 // ASSET: place click.mp3 in /assets/click.mp3 for release builds.
@@ -408,6 +409,22 @@ export default function Home() {
 
       {/* SECTION 6: COMMUNITY SIGNAL */}
       <section className="signal-section page-frame scroll-reveal" data-reveal style={{ backgroundImage: `url(${GREEN_NOISE})` }}><div className="signal-line"><span>COMMUNITY_SIGNAL</span><span>// FFF ONLY</span></div><div className="signal-grid"><h2>STAY<br /><span>FORTIFIED.</span></h2><p>Some coins have utility. We have a story, a terminal, and an unreasonable amount of F.</p></div></section>
+
+      {/* SECTION 7: MARKET MEME VIDEO */}
+      <section className="video-section page-frame scroll-reveal" data-reveal aria-labelledby="video-heading">
+        <div className="section-heading"><span className="section-index">[06]</span><h2 id="video-heading"><strong>FFF MARKET</strong> // MEME_FEED</h2><span className="section-rule" /></div>
+        <p className="section-intro">A fictional exchange broadcast for the F-fortified. Green screens, red screens, zero seriousness.</p>
+        <div className="video-terminal">
+          <div className="terminal-bar"><span className="terminal-dots"><i /><i /><i /></span><span>/usr/bin/mwif_market_meme</span><span className="terminal-live">PLAYING</span></div>
+          <div className="video-frame">
+            <video className="mwif-video" controls playsInline preload="metadata" controlsList="nodownload noplaybackrate" disablePictureInPicture poster={storagePath("preview-wallpaper.jpg")} aria-label="$MWIF fictional market meme video">
+              <source src={MARKET_VIDEO_URL} type="video/mp4" />
+              Your browser does not support the MWIF market meme feed.
+            </video>
+          </div>
+          <div className="video-status"><span>MWIF // FICTIONAL EXCHANGE</span><span>30 SEC // FFF MARKET OPEN</span><span>DOWNLOAD_UI: DISABLED</span></div>
+        </div>
+      </section>
 
       {/* SECTION 9: MEDIA VAULT TEASER */}
       <section className="home-store-teaser page-frame scroll-reveal" data-reveal><div className="section-heading"><span className="section-index">[03]</span><h2><strong>STORE</strong> // CLASSIC_DROP</h2><span className="section-rule" /></div><div className="home-store-teaser-grid"><div><p className="section-intro">The full FFF drop is mounted in a dedicated vault: 105 memes, 20 stickers, and 20 GIFs for the timeline, group chat, and next questionable decision.</p><a className="terminal-button filled" href="#/store" data-button>OPEN FULL STORE <span>↗</span></a></div><div className="home-store-stats"><span><strong>105</strong> MEMES</span><span><strong>20</strong> STICKERS</span><span><strong>20</strong> GIFS</span><small>FFF_DROP // DOWNLOADABLE // FFF GANG</small></div></div></section>

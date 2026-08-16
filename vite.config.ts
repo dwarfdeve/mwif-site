@@ -14,6 +14,7 @@ function contentType(filePath: string) {
     ".jpg": "image/jpeg",
     ".jpeg": "image/jpeg",
     ".mp3": "audio/mpeg",
+    ".mp4": "video/mp4",
     ".png": "image/png",
     ".svg": "image/svg+xml",
     ".webp": "image/webp",
