@@ -31,3 +31,9 @@
 - [x] Add Oath identity, Global F counter, enhanced Press F behavior, Development Log, FFF Manifesto, Solana network panel, founder key sequence, and score sharing.
 - [x] Verify localStorage persistence, click sound fallback, responsive layout, and static asset paths.
 - [x] Build, push the complete release to GitHub, and save a checkpoint.
+
+## Animated MWIF logo STORE item
+
+- [x] Inspect available MWIF logo assets and the dedicated STORE catalog integration.
+- [x] Add the effect logo as a clearly labeled downloadable STORE item without changing the front-page logo.
+- [x] Verify preview/download behavior, responsive layout, build, and GitHub deployment.

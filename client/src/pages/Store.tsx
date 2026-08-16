@@ -5,6 +5,7 @@ import { classicStoreAssets } from "../lib/classicStoreAssets";
 const filters = ["ALL", "MEME", "STICKER", "GIF"] as const;
 type StoreFilter = (typeof filters)[number];
 const previewUrl = (url: string) => url.replace(/\.png$/i, ".webp");
+const logoEffectUrl = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/mwif-assets/mwif-logo-effect.gif`;
 
 export default function Store() {
   const [filter, setFilter] = useState<StoreFilter>("ALL");
@@ -26,6 +27,8 @@ export default function Store() {
         <div className="eyebrow"><span>STORE_EXECUTABLE</span><span>v.2026.01</span></div>
         <div className="store-title-row"><div><p className="hero-kicker">// FFF MEDIA VAULT FOR THE F-FORTIFIED</p><h1>CLASSIC <em>DROP</em></h1><p className="store-lede">The complete FFF drop: memes for the timeline, stickers for the group chat, and GIFs for every questionable decision.</p></div><div className="store-terminal-badge"><span>STATUS</span><strong>ONLINE</strong><small>{classicStoreAssets.length} FILES // FFF DROP</small></div></div>
       </section>
+
+      <section className="store-feature page-frame" aria-labelledby="logo-drop-heading"><div className="store-feature-copy"><span className="share-image-kicker">MWIF // SIGNATURE_ASSET</span><h2 id="logo-drop-heading">THE MWIF <em>LOGO EFFECT</em></h2><p>Animated scanlines, purple signal, green conviction. Download the effect logo for X, Telegram, edits, and the next FFF transmission.</p><div className="store-feature-actions"><a className="terminal-button filled" href={logoEffectUrl} download="mwif-logo-effect.gif" data-button>DOWNLOAD GIF ↘</a><a className="store-feature-post" href={`https://twitter.com/intent/tweet?text=${encodeURIComponent("Deploying the MWIF logo effect. FFF signal online.")}`} target="_blank" rel="noreferrer">POST ON X ↗</a></div></div><div className="store-feature-preview"><img src={logoEffectUrl} alt="Animated MWIF logo with terminal scanline and neon signal effect" loading="eager" decoding="async" /><span>GIF // 640×640 // LOOP</span></div></section>
 
       <section className="store-inventory page-frame" aria-labelledby="inventory-heading">
         <div className="section-heading"><span className="section-index">[03]</span><h2 id="inventory-heading"><strong>MEDIA_INVENTORY</strong> // FULL_PAYLOAD</h2><span className="section-rule" /></div>
