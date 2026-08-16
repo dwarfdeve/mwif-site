@@ -416,7 +416,7 @@ export default function Home() {
         <div className="video-terminal">
           <div className="terminal-bar"><span className="terminal-dots"><i /><i /><i /></span><span>/usr/bin/mwif_market_meme</span><span className="terminal-live">PLAYING</span></div>
           <div className="video-frame">
-            <iframe className="mwif-video" src="https://www.youtube-nocookie.com/embed/UQ5WUrb-VQM?rel=0&modestbranding=1" title="$MWIF fictional market meme video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen />
+            <iframe className="mwif-video" src="https://www.youtube-nocookie.com/embed/UQ5WUrb-VQM?controls=1&rel=0&modestbranding=1&iv_load_policy=3&fs=0&disablekb=1" title="$MWIF fictional market meme video" loading="lazy" allow="autoplay; encrypted-media" referrerPolicy="strict-origin-when-cross-origin" />
           </div>
           <div className="video-status"><span>MWIF // FICTIONAL EXCHANGE</span><span>30 SEC // FFF MARKET OPEN</span><span>SOUND: YOUTUBE_FEED</span></div>
         </div>

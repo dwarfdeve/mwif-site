@@ -62,3 +62,4 @@
 - [x] Build and push the website video integration to GitHub.
 - [x] Replace the large local MP4 with the user-hosted YouTube embed so sound remains available without a site download control.
 - [x] Rebuild, verify the hosted embed, and push the replacement to GitHub.
+- [x] Minimize the hosted embed so channel branding and extra controls are hidden, leaving essential play and sound controls visible.
